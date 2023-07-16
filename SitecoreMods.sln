@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FormFieldsMapper", "FormFie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreMods.Feature.FormFieldsMapper", "src\Feature\FormFieldsMapper\code\SitecoreMods.Feature.FormFieldsMapper\SitecoreMods.Feature.FormFieldsMapper.csproj", "{144FBF62-4E9F-4E44-A74D-9D802E900DD7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forms", "Forms", "{F2D10DA2-18F5-4F9E-AF11-96247995B607}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,8 +30,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B7A6F440-EA1C-4A87-8276-13A85E581ACD} = {9F8FE520-6B55-41AA-A91A-6F72B3D65278}
+		{B7A6F440-EA1C-4A87-8276-13A85E581ACD} = {F2D10DA2-18F5-4F9E-AF11-96247995B607}
 		{144FBF62-4E9F-4E44-A74D-9D802E900DD7} = {B7A6F440-EA1C-4A87-8276-13A85E581ACD}
+		{F2D10DA2-18F5-4F9E-AF11-96247995B607} = {9F8FE520-6B55-41AA-A91A-6F72B3D65278}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE936586-8561-466B-8242-2C9115FA3C96}
