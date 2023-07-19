@@ -1,0 +1,22 @@
+﻿---
+ID: "0f9d2a0c-07f9-475f-9331-e66a42b32f07"
+Parent: "7ef18a75-b5fe-4c65-9568-bb16aa971d67"
+Template: "99f8905d-4a87-4eb8-9f8b-a9bebfb3add6"
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Renderings/SitecoreMods/FormFieldsMapper
+DB: core
+SharedFields:
+- ID: "51b435bc-f7b9-478a-9c51-52916af96ff5"
+  Hint: Path
+  Value: /sitecore/shell/client/Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/FormFieldsMapper.cshtml
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230719T180017Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

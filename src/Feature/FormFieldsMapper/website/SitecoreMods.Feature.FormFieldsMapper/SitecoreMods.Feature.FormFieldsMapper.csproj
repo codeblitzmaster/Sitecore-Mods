@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Win32.Primitives" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
@@ -58,23 +59,46 @@
       <HintPath>..\..\..\..\..\packages\Sitecore.Mvc.10.3.0\lib\net48\Sitecore.Mvc.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Sitecore.Speak.Client, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\Sitecore.Speak.Client.10.3.0\lib\net48\Sitecore.Speak.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Speak.Components, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\Sitecore.Speak.Components.10.3.0\lib\net48\Sitecore.Speak.Components.dll</HintPath>
+    </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
+    <Reference Include="System.AppContext" />
+    <Reference Include="System.Console" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Diagnostics.Tracing" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Globalization.Calendars" />
+    <Reference Include="System.IO" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile" />
+    <Reference Include="System.IO.FileSystem" />
+    <Reference Include="System.IO.FileSystem.Primitives" />
     <Reference Include="System.Linq" />
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Net.Sockets" />
+    <Reference Include="System.Reflection" />
     <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Extensions" />
     <Reference Include="System.Runtime.InteropServices" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms" />
+    <Reference Include="System.Security.Cryptography.Encoding" />
+    <Reference Include="System.Security.Cryptography.Primitives" />
+    <Reference Include="System.Security.Cryptography.X509Certificates" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Text.RegularExpressions" />
     <Reference Include="System.Threading.Thread" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -128,6 +152,7 @@
       <Private>False</Private>
       <HintPath>..\..\..\..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.ReaderWriter" />
     <Reference Include="WebGrease">
       <Private>False</Private>
       <HintPath>..\..\..\..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -144,12 +169,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Field.cs" />
+    <Compile Include="Models\FormFieldsMapperRenderingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.FormFieldsMapper.Serialization.config" />
     <None Include="Properties\PublishProfiles\Debug.pubxml" />
+    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\css\FormFieldsMapper.css" />
+    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\css\vendor\jquery.mentionsInput.css" />
+    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\FormFieldsMapper.cshtml" />
     <None Include="Web.config" />
+    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\js\FormFieldsMapper.js" />
+    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\js\vendor\jquery.mentionsInput.js" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -160,7 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
