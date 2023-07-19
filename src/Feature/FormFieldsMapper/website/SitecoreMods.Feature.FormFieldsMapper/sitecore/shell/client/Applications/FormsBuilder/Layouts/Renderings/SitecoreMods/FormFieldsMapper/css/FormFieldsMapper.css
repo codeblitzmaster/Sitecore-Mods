@@ -1,1 +1,33 @@
-﻿
+﻿.sc-FormFieldsMapper{
+    border: 1px double #ccc;
+}
+
+.form-fields-mapper-header{
+    background: #ececec;
+}
+
+.form-fields-mapper-header h4{
+    margin:0;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-fields-mapper-body{
+    padding: 10px;
+}
+
+/* Table Style Starts Here*/
+#form-fields-mapper{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#form-fields-mapper td{
+    padding: 5px 5px 5px 0;
+}
+/* Table Style Ends Here*/
+
+.form-fields-mapper-footer{
+    padding: 10px;
+}
