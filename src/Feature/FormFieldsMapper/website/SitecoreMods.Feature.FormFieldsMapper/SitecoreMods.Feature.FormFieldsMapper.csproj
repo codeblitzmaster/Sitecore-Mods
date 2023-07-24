@@ -176,11 +176,12 @@
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.FormFieldsMapper.Serialization.config" />
     <None Include="Properties\PublishProfiles\Debug.pubxml" />
-    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\css\FormFieldsMapper.css" />
+    <None Include="Web.config" />
+    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Actions\SitecoreMods\SubmitToAPI\SubmitToAPI.js" />
+    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\FormFieldsMapper.css" />
     <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\css\vendor\jquery.mentionsInput.css" />
     <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\FormFieldsMapper.cshtml" />
-    <None Include="Web.config" />
-    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\js\FormFieldsMapper.js" />
+    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\FormFieldsMapper.js" />
     <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\js\vendor\jquery.mentionsInput.js" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

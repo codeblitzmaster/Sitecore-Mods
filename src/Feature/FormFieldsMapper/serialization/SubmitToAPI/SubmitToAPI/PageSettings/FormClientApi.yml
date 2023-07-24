@@ -1,0 +1,34 @@
+﻿---
+ID: "41ac367e-cb54-4164-8a58-d237237a8955"
+Parent: "2686305a-76c9-4267-844a-db0563db3474"
+Template: "1536b089-2e60-4904-931d-8aa5e1d7306b"
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI/PageSettings/FormClientApi
+DB: core
+SharedFields:
+- ID: "4fc17c8f-d3b6-49c6-92f9-0517089d568c"
+  Hint: Format
+  Value: itemId=itemId&name=name
+- ID: "f72b86a2-0b9e-4bd8-bb1d-6994ac499ee9"
+  Hint: IncludedFieldTypeIds
+  Type: tree list
+  Value: |
+    {4EE89EA7-CEFE-4C8E-8532-467EF64591FC}
+    {A296A1C1-0DA0-4493-A92E-B8191F43AEC6}
+    {5B153FC0-FC3F-474F-8CB8-233FB1BEF292}
+    {04C39CAC-8976-4910-BE0D-879ED3368429}
+    {DF74F55B-47E6-4D1C-92F8-B0D46A7B2704}
+    {4DA85E8A-3B48-4BC6-9565-8C1F5F36DD1B}
+    {38137D30-7B2A-47D5-BBD8-133252C01B28}
+    {E0CFADEE-1AC0-471D-A820-2E70D1547B4B}
+    {222A2121-D370-4C6F-80A3-03C930B718BF}
+    {D86A361A-D4FF-46B2-9E97-A37FC5B1FE1A}
+    {EDBD38A8-1AE9-42EC-8CCD-F5B0E2998B4F}
+    {72B22999-8509-49A1-BD0C-04D68A9131CD}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230723T195357Z

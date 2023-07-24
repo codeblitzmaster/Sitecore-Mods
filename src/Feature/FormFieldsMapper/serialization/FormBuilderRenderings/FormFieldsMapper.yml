@@ -5,9 +5,24 @@ Template: "99f8905d-4a87-4eb8-9f8b-a9bebfb3add6"
 Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Renderings/SitecoreMods/FormFieldsMapper
 DB: core
 SharedFields:
+- ID: "041110fb-9293-40de-8ae8-7b5f04f425be"
+  Hint: Customize Page
+  Value: 
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: "{7596C319-7A5D-4E14-A6FD-780FFCAD3C70}"
 - ID: "51b435bc-f7b9-478a-9c51-52916af96ff5"
   Hint: Path
   Value: /sitecore/shell/client/Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/FormFieldsMapper.cshtml
+- ID: "7d24e54f-5c16-4314-90c9-6051aa1a7da1"
+  Hint: Parameters Template
+  Value: "{7596C319-7A5D-4E14-A6FD-780FFCAD3C70}"
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: PageSettings
+- ID: "ddab263e-b42e-419a-aa6f-081b7393ca38"
+  Hint: Model
+  Value: Sitecore.ExperienceForms.Client.Models.UrlParametersEditorRenderingModel,Sitecore.ExperienceForms.Client
 Languages:
 - Language: en
   Versions:

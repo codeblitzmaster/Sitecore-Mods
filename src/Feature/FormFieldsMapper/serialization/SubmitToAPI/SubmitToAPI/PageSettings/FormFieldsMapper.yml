@@ -1,0 +1,22 @@
+﻿---
+ID: "7395d21e-ae0c-49fa-9c8b-9f912211bc5a"
+Parent: "2686305a-76c9-4267-844a-db0563db3474"
+Template: "7596c319-7a5d-4e14-a6fd-780ffcad3c70"
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI/PageSettings/FormFieldsMapper
+DB: core
+SharedFields:
+- ID: "ac264d78-d730-4c59-8b10-2d8a67e76ae4"
+  Hint: Id
+  Value: FormFieldsMapper
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230724T092926Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

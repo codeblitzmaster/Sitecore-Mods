@@ -13,10 +13,6 @@ namespace SitecoreMods.Feature.FormFieldsMapper.Models
         public override void Initialize(Rendering rendering)
         {
             base.Initialize(rendering);
-            Requires.Clear();
-            Requires.Add(new RequireDescriptor(RequireType.Css, "client", "Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/css/vendor/mentionsInput.css"));
-            Requires.Add(new RequireDescriptor(RequireType.Css, "client", "Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/css/FormFieldsMapper.css"));
-            Requires.Add(new RequireDescriptor(RequireType.JavaScript, "client", "Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/js/FormFieldsMapper.js"));
         }
     }
 }

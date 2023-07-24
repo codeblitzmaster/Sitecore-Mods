@@ -1,0 +1,17 @@
+﻿---
+ID: "fee091d4-9b34-43d0-9ec6-ceddc8e42124"
+Parent: "2686305a-76c9-4267-844a-db0563db3474"
+Template: "46efcf7f-6ebb-4059-b9bf-8ef47c4f5e20"
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI/PageSettings/HeaderTitle
+DB: core
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "240acdcd-c405-4e49-a96a-b3caab843920"
+      Hint: Text
+      Value: Submit to API
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230723T195741Z
