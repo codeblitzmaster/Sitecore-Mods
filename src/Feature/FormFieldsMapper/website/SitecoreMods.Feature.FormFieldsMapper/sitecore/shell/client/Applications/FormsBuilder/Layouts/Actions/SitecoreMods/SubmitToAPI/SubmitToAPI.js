@@ -19,8 +19,7 @@
 
                 setFormFields: function () {
                     var formFields = this.FormClientApi.getFields();
-                    debugger;
-                    //this.FormFieldsMapper.setFormFields(this.FormClientApi.getFields());
+                    this.FormFieldsMapper.setFormFields(formFields);
                 },
 
                 loadDone: function (parameters) {

@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.FormFieldsMapper.Serialization.config" />
+    <Content Include="App_Config\Include\Feature\Feature.FormFieldsMapper.Pipelines.config" />
     <None Include="Properties\PublishProfiles\Debug.pubxml" />
     <None Include="Web.config" />
     <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Actions\SitecoreMods\SubmitToAPI\SubmitToAPI.js" />

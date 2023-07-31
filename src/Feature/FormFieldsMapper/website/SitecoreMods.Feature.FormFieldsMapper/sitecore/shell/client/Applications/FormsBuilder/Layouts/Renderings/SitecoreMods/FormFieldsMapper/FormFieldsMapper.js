@@ -21,6 +21,12 @@
         },
         setFormFields: function (formFields) {
             this.FormFields = formFields;
+            this.renderFormFields();
+        },
+        renderFormFields: function () {
+            var formFieldsList = '';
+            $(this.FormFields).each(function () { formFieldsList += '<li>' + this.name + ' (' + this.itemId +')'+'</li>'; });
+            $('.sc-FormFieldsMapper[data-sc-id="' + this.id + '"] .debug-info').html('<ul>' + formFieldsList + '</ul>');
         }
     }, "FormFieldsMapper");
 })(Sitecore.Speak);

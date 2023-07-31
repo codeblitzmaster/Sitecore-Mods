@@ -1,33 +1,26 @@
-﻿.sc-FormFieldsMapper{
-    border: 1px double #ccc;
-}
-
-.form-fields-mapper-header{
+﻿.form-fields-mapper-header {
     background: #ececec;
-}
-
-.form-fields-mapper-header h4{
-    margin:0;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
-    font-weight: bold;
 }
 
-.form-fields-mapper-body{
-    padding: 10px;
+
+#form-fields-mapper span {
+    display: block;
+    font-style: italic;
 }
 
-/* Table Style Starts Here*/
-#form-fields-mapper{
-    width: 80%;
-    margin: 0 auto;
+#form-fields-mapper .required:after {
+    content: ' *';
+    color: red;
+    font-size: 10px;
+    vertical-align: text-top;
 }
 
-#form-fields-mapper td{
-    padding: 5px 5px 5px 0;
+#form-fields-mapper textarea {
+    width: 100%;
+    resize: vertical;
 }
-/* Table Style Ends Here*/
-
-.form-fields-mapper-footer{
-    padding: 10px;
+.sct{
+    background: red;
 }
