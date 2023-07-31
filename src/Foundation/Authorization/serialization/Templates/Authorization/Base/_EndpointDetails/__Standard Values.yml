@@ -1,0 +1,22 @@
+﻿---
+ID: "556fb1c9-718e-4a8d-81a4-3f186cdd5072"
+Parent: "6f05e64e-7577-4af4-985a-6753f56764bb"
+Template: "6f05e64e-7577-4af4-985a-6753f56764bb"
+Path: /sitecore/templates/Foundation/SitecoreMods/Authorization/Base/_EndpointDetails/__Standard Values
+DB: master
+SharedFields:
+- ID: "5959d075-22ef-4cee-a23d-24f099ab9258"
+  Hint: RequestMethod
+  Value: GET
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230731T133359Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
