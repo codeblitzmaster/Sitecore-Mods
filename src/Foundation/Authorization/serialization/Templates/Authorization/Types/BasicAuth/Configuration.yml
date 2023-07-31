@@ -1,0 +1,18 @@
+﻿---
+ID: "9aabc9cd-6d11-459c-b6bf-07205bf3cd54"
+Parent: "8bb2144c-0b1f-4ef9-9841-31c247de494f"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/Foundation/SitecoreMods/Authorization/Types/BasicAuth/Configuration
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230731T154541Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

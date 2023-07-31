@@ -1,0 +1,18 @@
+﻿---
+ID: "2f3a8f8d-eff8-4aee-9222-c221e85e6af3"
+Parent: "029c9871-7a40-4546-b4cb-cf4c41e4db43"
+Template: "1930bbeb-7805-471a-a3be-4858ac7cf696"
+Path: /sitecore/system/Settings/SitecoreMods/Authorization/ApiAddTo/Header
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230731T153031Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

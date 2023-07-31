@@ -1,0 +1,18 @@
+﻿---
+ID: "81e1effc-c344-437c-9aa9-7cab4addad18"
+Parent: "5b4ce364-b272-4924-9290-c8f83479d949"
+Template: "5b4ce364-b272-4924-9290-c8f83479d949"
+Path: /sitecore/templates/Foundation/SitecoreMods/Authorization/Types/OAuth2ClientCredentialsGrant/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230731T155139Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

@@ -22,7 +22,7 @@ SharedFields:
   Value: PageSettings
 - ID: "ddab263e-b42e-419a-aa6f-081b7393ca38"
   Hint: Model
-  Value: Sitecore.ExperienceForms.Client.Models.UrlParametersEditorRenderingModel,Sitecore.ExperienceForms.Client
+  Value: SitecoreMods.Feature.FormFieldsMapper.Models.FormFieldsMapperRenderingModel, SitecoreMods.Feature.FormFieldsMapper
 Languages:
 - Language: en
   Versions:
