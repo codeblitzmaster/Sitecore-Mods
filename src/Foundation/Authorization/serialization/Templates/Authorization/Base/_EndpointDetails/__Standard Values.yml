@@ -6,8 +6,8 @@ Path: /sitecore/templates/Foundation/SitecoreMods/Authorization/Base/_EndpointDe
 DB: master
 SharedFields:
 - ID: "5959d075-22ef-4cee-a23d-24f099ab9258"
-  Hint: RequestMethod
-  Value: GET
+  Hint: HTTPMethod
+  Value: 
 Languages:
 - Language: en
   Versions:

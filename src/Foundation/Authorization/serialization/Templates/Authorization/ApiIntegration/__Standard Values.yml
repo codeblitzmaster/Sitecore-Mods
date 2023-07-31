@@ -1,0 +1,18 @@
+﻿---
+ID: "34f3f7e0-b318-4adb-8ed8-9921d63dade0"
+Parent: "1240e64c-c980-471f-962e-cc5917aa54cd"
+Template: "1240e64c-c980-471f-962e-cc5917aa54cd"
+Path: /sitecore/templates/Foundation/SitecoreMods/Authorization/ApiIntegration/__Standard Values
+DB: master
+SharedFields:
+- ID: "620cd8b2-a0d3-463f-a875-d565c899c304"
+  Hint: URL
+  Value: 
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230731T172154Z

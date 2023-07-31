@@ -1,13 +1,13 @@
 ﻿---
-ID: "d1c9f3d7-915f-40e2-b608-5f90b03e7ab2"
-Parent: "6f05e64e-7577-4af4-985a-6753f56764bb"
+ID: "ce9685b2-7baa-44ea-b96e-2d061b214a97"
+Parent: "0976cab7-b48e-4546-8815-8e03144cd3cd"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
-Path: /sitecore/templates/Foundation/SitecoreMods/Authorization/Base/_EndpointDetails/Configuration
+Path: /sitecore/templates/Foundation/SitecoreMods/Authorization/Base/_Authorization/Authorization
 DB: master
 SharedFields:
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 105
+  Value: 110
 Languages:
 - Language: en
   Versions:
@@ -15,7 +15,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20230731T121724Z
+      Value: 20230731T172105Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |

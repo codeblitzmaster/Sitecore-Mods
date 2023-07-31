@@ -1,0 +1,19 @@
+﻿---
+ID: "51d3d2ba-97a5-4666-9dd9-ae6d3c7a0d6d"
+Parent: "aa4d680c-10af-478f-a877-f5eb4ac7a0a4"
+Template: "aa4d680c-10af-478f-a877-f5eb4ac7a0a4"
+Path: /sitecore/templates/Feature/SitecoreMods/FormFieldsMapper/ApiIntegration/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{D729C16E-FBD5-4794-8AE2-BEA772C0C25D}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230731T191213Z

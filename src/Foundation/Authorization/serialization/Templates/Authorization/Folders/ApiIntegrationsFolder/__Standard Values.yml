@@ -1,0 +1,26 @@
+﻿---
+ID: "4fffa15d-42f9-4de5-a0be-6c907f86b705"
+Parent: "1145b7f5-3d8b-4573-9b82-f3f3ca4aff8c"
+Template: "1145b7f5-3d8b-4573-9b82-f3f3ca4aff8c"
+Path: /sitecore/templates/Foundation/SitecoreMods/Authorization/Folders/ApiIntegrationsFolder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {15CF62EC-BDBB-4260-AB1A-10E32C00108D}
+    {1145B7F5-3D8B-4573-9B82-F3F3CA4AFF8C}
+    {1240E64C-C980-471F-962E-CC5917AA54CD}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230731T162611Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
