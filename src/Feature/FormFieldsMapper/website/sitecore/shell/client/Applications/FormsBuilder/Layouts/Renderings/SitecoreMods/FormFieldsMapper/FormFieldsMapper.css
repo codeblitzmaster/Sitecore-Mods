@@ -5,7 +5,7 @@
 }
 
 
-#form-fields-mapper span {
+#form-fields-mapper span.description {
     display: block;
     font-style: italic;
 }

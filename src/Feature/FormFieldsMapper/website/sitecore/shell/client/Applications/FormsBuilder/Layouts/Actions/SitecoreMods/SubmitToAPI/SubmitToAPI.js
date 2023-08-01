@@ -17,11 +17,10 @@
                     }
                 },
 
-                setFormFields: function () {
+                renderFieldsMapper: function () {
                     var formFields = this.FormClientApi.getFields();
                     debugger;
-                    this.MapFieldsTabApp.FormFieldsMapper.setFormFields(formFields);
-                    this.MapFieldsTabApp.FormFieldsMapper.setDestinationFields(this.ApiEndpointTabApp.ApiEndpointTreeView.SelectedItem);
+                    this.MapFieldsTabApp.FormFieldsMapper.build(this.ApiEndpointTabApp.ApiEndpointTreeView.SelectedItem, formFields);
                 },
                 loadDone: function (parameters) {
                     var app = this;
@@ -32,7 +31,7 @@
                         app.bindApiEndpointEvents();
                     });
                     this.Tabs.on("loaded:MapFieldsTab", function () {
-                        app.setFormFields();
+                        app.renderFieldsMapper();
                         debugger
                     });
                     this.Tabs.on("loaded:ReviewTab", function () {

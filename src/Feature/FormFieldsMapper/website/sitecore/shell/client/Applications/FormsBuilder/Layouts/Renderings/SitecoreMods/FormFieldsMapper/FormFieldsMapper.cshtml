@@ -1,4 +1,6 @@
-﻿@using Sitecore.Mvc
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Sitecore.Mvc
 @using Sitecore.Mvc.Presentation
 @using Sitecore.Web.UI.Controls.Common.UserControls
 @*@model Sitecore.Speak.Components.Models.ComponentRenderingModel*@
@@ -10,6 +12,8 @@
 
 
 <div @htmlAttributes>
+    <div data-bind="text: console.log(' My Log:', $data)"></div>
+    <div data-bind="text: console.log(' root Log:', $root)"></div>
     <section class="form-fields-mapper-container">
         <div class="form-fields-mapper-header">
             <h4>Map Fields</h4>
@@ -27,29 +31,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <label for="firstname" class="required">FirstName</label>
-                            <span>Firstname of the person</span>
-                        </td>
-                        <td>
-                            <textarea id="firstname" required></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="lastname" class="required">LastName</label>
-                        </td>
-                        <td>
-                            <textarea id="lastname" required></textarea>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
-        <div class="form-fields-mapper-footer">
+        @*<div class="form-fields-mapper-footer">
             <button>Add Custom Mappings</button>
-        </div>
+        </div>*@
     </section>
     <div class="debug-info">
 

@@ -10,9 +10,13 @@ namespace SitecoreMods.Feature.FormFieldsMapper.Models
 {
     public class FormFieldsMapperRenderingModel : CollectionBaseRenderingModel
     {
-        public override void Initialize(Rendering rendering)
+        //public override void Initialize(Rendering rendering)
+        //{
+        //    base.Initialize(rendering);
+        //}
+        protected override void InitializeProperties()
         {
-            base.Initialize(rendering);
+            base.InitializeProperties();
         }
     }
 }
