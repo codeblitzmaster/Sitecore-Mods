@@ -17,11 +17,11 @@
     require.config({
         paths: {
             mentionsInput: "/sitecore/shell/client/Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/js/vendor/jquery.mentionsInput",
-            mentionsInputStyles: "/sitecore/shell/client/Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/css/vendor/jquery.mentionsInput"
+            mentionsInputCss: "/sitecore/shell/client/Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/css/vendor/jquery.mentionsInput"
         }
     })
 
-    Speak.component(["itemJS", "bclCollection", "mentionsInput","css!mentionsInputStyles"],
+    Speak.component(["itemJS", "bclCollection", "mentionsInput", "css!mentionsInputCss"],
         function (itemManager, Collection) {
             var getItem = function (guid, callBack, options) {
                 if (!guid) {
@@ -93,8 +93,17 @@
                     this.defineProperty("DestinationFields", []);
                 },
                 setFormFields: function (formFields) {
+                    var formFields = _.map(formFields, function (field) {
+                        return {
+                            id: field.itemId,
+                            name: field.name
+                        };
+                    });
                     this.FormFields = formFields;
                     this.renderFormFields();
+                },
+                getFormFields: function () {
+                    return this.FormFields;
                 },
                 setDestinationFields: function (item) {
                     options = {};
@@ -125,7 +134,7 @@
                 build(fieldsRootItem, formFields) {
                     this.setFormFields(formFields);
                     this.setDestinationFields(fieldsRootItem);
-                    
+
                 },
                 buildTable: function () {
                     if (this.Items.length < 1) {
@@ -146,7 +155,7 @@
                             </tr>
                          */
                         var $tableBody = $("#form-fields-mapper tbody");
-                        _.each(this.Items, function (item) {
+                        _.each(this.Items, function (item, idx) {
                             var $tr = $('<tr>');
 
                             var $destinationColumn = $('<td>');
@@ -170,24 +179,22 @@
                                 id: item.Name,
                                 text: item.Value,
                                 "class": "form-control source-field",
-                                required: item.IsRequired
+                                required: item.IsRequired,
+                                "data-row": idx
                             });
                             $sourceColumn.append($sourceColumnTextarea);
                             $tr.append($sourceColumn);
                             debugger;
                             $tableBody.append($tr);
                         });
-                        console.log(this.FormFields);
-                        var formFieldsFormatted = _.map(this.FormFields, function (field) {
-                            return {
-                                id: field.itemId,
-                                name: field.name
-                            };
-                        });
+
+                        var formFields = this.getFormFields();
+                        console.log(formFields);
+
                         $tableBody.find(".source-field").mentionsInput({
                             allowRepeat: true,
                             onDataRequest: function (mode, query, callback) {
-                                var data = formFieldsFormatted;
+                                var data = formFields;
                                 data = _.filter(data, function (item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
                                 callback.call(this, data);
                             },
@@ -195,11 +202,15 @@
                                 mentionItemSyntax: _.template('@[<%= value %>]'),
                             }
                         });
-
-                        //To Get Formatted Value
-                        //$(".form-fields-mapper-src-field").mentionsInput("val", function (text) {
-                        //    console.log(text);
-                        //});
+                        var app = this;
+                        $tableBody.find(".source-field").on("input", function () {
+                            var idx = $(this).data("row");
+                            $(this).mentionsInput("val", function (newValue) {
+                                //console.log(newValue);
+                                app.Items[idx].Value = newValue;
+                            });
+                            //console.log("Updated Value:", app.Items[idx].Value);
+                        });
                     }
                 },
                 renderFormFields: function () {
@@ -231,6 +242,10 @@
                         function (obj) {
                             return obj.parameter != undefined && obj.parameter != null && obj.parameter != '' && obj.value != undefined && obj.value != null;
                         });
+                },
+                getData: function () {
+                    debugger;
+                    alert("hitttt!");
                 }
             });
         }, "FormFieldsMapper");
