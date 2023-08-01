@@ -1,0 +1,53 @@
+﻿---
+ID: "fe64e806-6551-4d27-8417-f0d5ef64395a"
+Parent: "649f31ec-352d-4be4-9aa8-0c71ec884630"
+Template: "8a7acb1a-0990-4c9e-a6f0-9612d0f5f51c"
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI/PageSettings/Tabs/ApiEndpointTab
+DB: core
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: office/16x16/antenna.png
+- ID: "8d46881c-cdae-4bef-98a8-bef74afb4cb7"
+  Hint: IconPadding
+  Value: 
+- ID: "c8b0cbfc-960c-4a4f-aa94-950fe2476fb6"
+  Hint: IsSubAppRegistered
+  Type: Checkbox
+  Value: 1
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{DCF79137-F911-4F3F-B244-2CA25BE2367E}"
+          p:before="*"
+          s:id="{08994B8F-7BF1-4963-815D-0FA8D75B3D86}"
+          s:par="Id=TabBorder"
+          s:ph="" />
+        <r
+          uid="{91858E74-D844-47C7-ADB8-F9EE1F2C86BB}"
+          p:after="*[1=2]"
+          s:id="{4D096960-FC73-4E0B-8D93-28736AD98E98}"
+          s:par="Database=master&amp;IsPreLoadItemExpanded=1&amp;BaseTemplates=%7bAA4D680C-10AF-478F-A877-F5EB4AC7A0A4%7d&amp;CheckableTemplates=%7bAA4D680C-10AF-478F-A877-F5EB4AC7A0A4%7d&amp;ShowHiddenItems=0&amp;Template=%7bAA4D680C-10AF-478F-A877-F5EB4AC7A0A4%7d&amp;StaticData=%2fsitecore%2fsystem%2fApiIntegrations%2fForms%2f&amp;Id=ApiEndpointTreeView"
+          s:ph="TabBorder.Content" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230801T073149Z
+    - ID: "772aea8a-4d70-43f4-bd6b-ede5fb060623"
+      Hint: Tooltip
+      Value: 
+    - ID: "f808909e-dc32-4da6-9e5e-ed69eb9d3ed7"
+      Hint: Header
+      Value: Configure API Endpoint

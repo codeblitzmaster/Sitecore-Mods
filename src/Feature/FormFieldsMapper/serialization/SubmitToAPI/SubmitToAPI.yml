@@ -39,15 +39,10 @@ SharedFields:
           ph="Page.Body"
           uid="{CC1AB8BC-76DE-4664-AC58-CB91B4425594}" />
         <r
-          id="{08994B8F-7BF1-4963-815D-0FA8D75B3D86}"
-          par="Id=FormFieldsMapperBorder"
+          id="{7CE24006-7B34-4678-BC91-7675C6E2C9B9}"
+          par="TabVisualStyle=Progressive&amp;IsVisible=1&amp;DisplayFieldName=Header&amp;ConfigurationItem=%7b649F31EC-352D-4BE4-9AA8-0C71EC884630%7d&amp;Id=Tabs"
           ph="MainBorder.Content"
-          uid="{1FA350A8-1052-479C-92DD-3C9077C64327}" />
-        <r
-          id="{0F9D2A0C-07F9-475F-9331-E66A42B32F07}"
-          par="Id=FormFieldsMapper"
-          ph="FormFieldsMapperBorder.Content"
-          uid="{7E887FE0-DBB0-4872-AD8F-20A4E93CF77C}" />
+          uid="{30133FD9-4244-44E5-9B41-DED5D1976A9D}" />
       </d>
     </r>
 Languages:
