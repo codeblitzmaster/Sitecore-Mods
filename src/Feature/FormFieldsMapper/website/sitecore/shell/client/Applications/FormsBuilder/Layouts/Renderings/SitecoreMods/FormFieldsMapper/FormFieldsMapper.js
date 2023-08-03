@@ -19,7 +19,9 @@
             mentionsInput: "/sitecore/shell/client/Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/js/vendor/jquery.mentionsInput",
             mentionsInputCss: "/sitecore/shell/client/Applications/FormsBuilder/Layouts/Renderings/SitecoreMods/FormFieldsMapper/css/vendor/jquery.mentionsInput"
         }
-    })
+    });
+
+    var parentApp = window.parent.Sitecore.Speak.app.findApplication('EditActionSubAppRenderer');
 
     Speak.component(["itemJS", "bclCollection", "mentionsInput", "css!mentionsInputCss"],
         function (itemManager, Collection) {
@@ -119,21 +121,23 @@
                                 "Type": i.Type,
                                 "IsRequired": i.IsRequired == "1" ? true : false,
                                 "IsPrimary": i.IsPrimary == "1" ? true : false,
-                                "Value": null,
+                                "Value": "",
                                 "ID": i.$itemId
                             };
                             app.Items.push(destinationField);
                             return destinationField;
                         });
                         this.buildTable();
-                        debugger;
+                        this.app.ProgressIndicatorPanel.IsBusy = false;
                     }.bind(this));
 
                     debugger;
                 },
-                build(fieldsRootItem, formFields) {
+                build: function (fieldsRootItem, formFields) {
                     this.setFormFields(formFields);
                     this.setDestinationFields(fieldsRootItem);
+                    
+                    debugger;
 
                 },
                 buildTable: function () {
@@ -210,42 +214,29 @@
                                 app.Items[idx].Value = newValue;
                             });
                             //console.log("Updated Value:", app.Items[idx].Value);
+                            app.validateItems();
                         });
                     }
                 },
                 renderFormFields: function () {
                     var formFieldsList = '';
-                    $(this.FormFields).each(function () { formFieldsList += '<li>' + this.name + ' (' + this.itemId + ')' + '</li>'; });
+                    $(this.FormFields).each(function () { formFieldsList += '<li>' + this.name + ' (' + this.id + ')' + '</li>'; });
                     $('.sc-FormFieldsMapper[data-sc-id="' + this.id + '"] .debug-info').html('<ul>' + formFieldsList + '</ul>');
                 },
-
-                getItems: function () {
-                    var parameters = _.map(this.Items,
-                        function (i) {
-                            debugger;
-                            return {
-                                "Name": i.Name,
-                                "DisplayName": i.DisplayName,
-                                "Description": i.Description,
-                                "Type": i.Type,
-                                "IsRequired": i.IsRequired,
-                                "IsPrimary": i.IsPrimary,
-                                "Value": i.Value,
-                                "ID": i.ID
-                            };
-                        });
-                    return parameters;
+                getMappings: function () {
+                    return this.Items;
                 },
                 validateItems: function () {
-                    var parameters = this.getItems();
-                    return _.every(parameters,
-                        function (obj) {
-                            return obj.parameter != undefined && obj.parameter != null && obj.parameter != '' && obj.value != undefined && obj.value != null;
+                    var mappings = this.getMappings();
+                    var isValid = false;
+                    isValid = _.every(mappings,
+                        function (fieldMapping) {
+                            if (fieldMapping.IsRequired) {
+                                return fieldMapping.Value.length > 0;
+                            }
+                            return true;
                         });
-                },
-                getData: function () {
-                    debugger;
-                    alert("hitttt!");
+                    parentApp.setSelectability(this, isValid);
                 }
             });
         }, "FormFieldsMapper");

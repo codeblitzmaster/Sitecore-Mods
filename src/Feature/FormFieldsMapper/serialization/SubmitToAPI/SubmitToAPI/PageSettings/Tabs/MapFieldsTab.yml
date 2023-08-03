@@ -38,11 +38,17 @@ SharedFields:
           s:par="Id=TabBorder"
           s:ph="Page.Body" />
         <r
+          uid="{135003FC-327B-4EB7-92EE-F7A54A0D7B33}"
+          p:after="r[@uid='{D75E4DDF-0253-4AB5-899C-55803E2F7478}']"
+          s:id="{4FCB66FF-03DF-4F4E-BD4D-A017CDFC4B09}"
+          s:par="IsBusy=1&amp;IsFullWidth=1&amp;Id=ProgressIndicatorPanel"
+          s:ph="TabBorder.Content" />
+        <r
           uid="{5C2B93E5-DC10-4B96-AD7B-DE7A45C49934}"
           p:after="*[1=2]"
           s:id="{0F9D2A0C-07F9-475F-9331-E66A42B32F07}"
           s:par="Id=FormFieldsMapper"
-          s:ph="TabBorder.Content" />
+          s:ph="ProgressIndicatorPanel.Content" />
       </d>
     </r>
 Languages:

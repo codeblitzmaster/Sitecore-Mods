@@ -3,7 +3,7 @@
 
     speak.pageCode([],
         function () {
-
+            var apiEndpoint = null;
             return {
                 initialized: function () {
                     this.on({
@@ -52,6 +52,7 @@
                     //enabling MapFieldsTab (Mappings)
                     if (isSelectable && selectedItem.$templateName == "ApiIntegration") {
                         //this.Tabs.toggleEnabledAt(1);
+                        apiEndpoint = selectedItem.$itemId;
                         mapFieldsTab.IsDisabled = 0;
                         debugger;
                         //logic to enable ok button
@@ -67,8 +68,13 @@
                     });
 
                     return tab[0];
+                },
+                getData: function () {
+                    this.Parameters.Mappings = this.MapFieldsTabApp.FormFieldsMapper.getMappings();
+                    this.Parameters.ApiEndpoint = apiEndpoint;
+                    debugger;
+                    return this.Parameters;
                 }
-
             };
         });
 })(Sitecore.Speak);
