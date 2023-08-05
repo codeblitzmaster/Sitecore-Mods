@@ -3,7 +3,7 @@
 
     speak.pageCode([],
         function () {
-            var apiEndpoint = null;
+            var apiEndpoint = null, apiEndpointId = null;
             return {
                 initialized: function () {
                     this.on({
@@ -16,12 +16,6 @@
                         //parentApp.loadDone(this, "Submit to API", "Integrate with any API");
                     }
                 },
-
-                renderFieldsMapper: function () {
-                    var formFields = this.FormClientApi.getFields();
-                    debugger;
-                    this.MapFieldsTabApp.FormFieldsMapper.build(this.ApiEndpointTabApp.ApiEndpointTreeView.SelectedItem, formFields);
-                },
                 loadDone: function (parameters) {
                     var app = this;
                     //this.Tabs.on("loaded", function () {
@@ -31,10 +25,11 @@
                         app.bindApiEndpointEvents();
                     });
                     this.Tabs.on("loaded:MapFieldsTab", function () {
-                        app.renderFieldsMapper();
-                        debugger
+                        //app.renderFieldsMapper();
+                        debugger;
                     });
-                    this.Tabs.on("loaded:ReviewTab", function () {
+                    //Triggered when tab is selected
+                    this.Tabs.on("change:SelectedValue", function (selectedTab) {
                         debugger;
                     });
                     debugger;
@@ -52,14 +47,15 @@
                     //enabling MapFieldsTab (Mappings)
                     if (isSelectable && selectedItem.$templateName == "ApiIntegration") {
                         //this.Tabs.toggleEnabledAt(1);
-                        apiEndpoint = selectedItem.$itemId;
-                        mapFieldsTab.IsDisabled = 0;
-                        debugger;
-                        //logic to enable ok button
-                        //parentApp.setSelectability(this, isSelectable, this.ApiEndpointTabApp.ApiEndpointTreeView.SelectedItemId);
-                    }
-                    else {
-                        mapFieldsTab.IsDisabled = 1;
+                        apiEndpoint = selectedItem;
+                        apiEndpointId = selectedItem.$itemId;
+
+                        //Notify FormFieldsMapper about ApiEndpoint selection change to rerender if selected item is different than previous one
+                        Sitecore.Speak.app.MapFieldsTabApp.FormFieldsMapper.trigger("updated:DestinationFieldsRootItem", apiEndpointId);
+
+                        if (mapFieldsTab.IsDisabled = 1) {
+                            mapFieldsTab.IsDisabled = 0;
+                        }
                     }
                 },
                 getTab: function (name) {
@@ -71,7 +67,7 @@
                 },
                 getData: function () {
                     this.Parameters.Mappings = this.MapFieldsTabApp.FormFieldsMapper.getMappings();
-                    this.Parameters.ApiEndpoint = apiEndpoint;
+                    this.Parameters.ApiEndpointId = apiEndpointId;
                     debugger;
                     return this.Parameters;
                 }

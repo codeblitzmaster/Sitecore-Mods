@@ -1,8 +1,8 @@
 ﻿---
-ID: "41ac367e-cb54-4164-8a58-d237237a8955"
-Parent: "2686305a-76c9-4267-844a-db0563db3474"
+ID: "b93005af-1182-4dcc-9c64-2867f20ac60e"
+Parent: "e12f557f-8aa5-4ea5-9da2-6c498d16678e"
 Template: "1536b089-2e60-4904-931d-8aa5e1d7306b"
-Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI/PageSettings/FormClientApi
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Renderings/SitecoreMods/FormFieldsMapper/PageSettings/FormClientApi
 DB: core
 SharedFields:
 - ID: "4fc17c8f-d3b6-49c6-92f9-0517089d568c"

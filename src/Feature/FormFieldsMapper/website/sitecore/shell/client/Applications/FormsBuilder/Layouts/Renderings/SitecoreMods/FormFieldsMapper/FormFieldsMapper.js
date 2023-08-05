@@ -82,38 +82,49 @@
                 };
 
             return Speak.extend({}, Collection.prototype, {
-                //initialize: function () {
-                //    debugger;
-                //    this.defineProperty("FormFields", []);
-                //    this.defineProperty("DestinationFields", []);
-
-                //},
+                initialize: function () {
+                    debugger;
+                },
                 initialized: function () {
                     Collection.prototype.initialized.call(this);
-                    debugger;
+                    this.on({
+                        "loaded": this.loadDone
+                    },
+                        this);
                     this.defineProperty("FormFields", []);
-                    this.defineProperty("DestinationFields", []);
+                    this.defineProperty("DestinationFieldsRootItemId", null);
+
+                    this.on("updated:DestinationFieldsRootItem", function (destinationFieldsRootItemId) {
+                        if (destinationFieldsRootItemId != null && destinationFieldsRootItemId != this.DestinationFieldsRootItemId) {
+                            this.setFormFields();
+                            this.DestinationFieldsRootItemId = destinationFieldsRootItemId;
+                            this.setDestinationFields(destinationFieldsRootItemId);
+                        }
+                    });
+                    debugger;
                 },
-                setFormFields: function (formFields) {
-                    var formFields = _.map(formFields, function (field) {
+                loadDone: function () {
+                    debugger;
+                },
+                setFormFields: function () {
+                    var formFields = this.FormClientApi.getFields();
+                    this.FormFields = _.map(formFields, function (field) {
                         return {
                             id: field.itemId,
                             name: field.name
                         };
                     });
-                    this.FormFields = formFields;
                     this.renderFormFields();
                 },
                 getFormFields: function () {
                     return this.FormFields;
                 },
-                setDestinationFields: function (item) {
+                setDestinationFields: function (destinationFieldsRootItemId) {
                     options = {};
                     options.database = Speak.Context.current().contentDatabase;
                     var app = this;
-                    getChildren(item.$itemId, function (items) {
-                        this.DestinationFields = (items.length > 0) ? items : [];
-                        var df = _.map(items, function (i) {
+                    getChildren(destinationFieldsRootItemId, function (items) {
+                        var formattedDestinationFields = _.map(items, function (i) {
                             var destinationField = {
                                 "Name": i.$itemName,
                                 "DisplayName": i.$displayName,
@@ -124,21 +135,13 @@
                                 "Value": "",
                                 "ID": i.$itemId
                             };
-                            app.Items.push(destinationField);
                             return destinationField;
                         });
+                        app.Items = formattedDestinationFields;
                         this.buildTable();
                         this.app.ProgressIndicatorPanel.IsBusy = false;
                     }.bind(this));
-
                     debugger;
-                },
-                build: function (fieldsRootItem, formFields) {
-                    this.setFormFields(formFields);
-                    this.setDestinationFields(fieldsRootItem);
-                    
-                    debugger;
-
                 },
                 buildTable: function () {
                     if (this.Items.length < 1) {
@@ -197,7 +200,7 @@
 
                         $tableBody.find(".source-field").mentionsInput({
                             allowRepeat: true,
-                            onDataRequest: function (mode, query, callback) {
+                            onDataRequest: function (model, query, callback) {
                                 var data = formFields;
                                 data = _.filter(data, function (item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
                                 callback.call(this, data);
@@ -229,14 +232,28 @@
                 validateItems: function () {
                     var mappings = this.getMappings();
                     var isValid = false;
-                    isValid = _.every(mappings,
+                    var isMappingsValid = _.every(mappings,
                         function (fieldMapping) {
                             if (fieldMapping.IsRequired) {
                                 return fieldMapping.Value.length > 0;
                             }
                             return true;
                         });
+                    isValid = this.DestinationFieldsRootItemId != null && isMappingsValid;
+                    debugger;
                     parentApp.setSelectability(this, isValid);
+                },
+                showMessage: function (text, type) {
+                    var message = {
+                        Type: type || "error",
+                        Text: text,
+                        IsClosable: true,
+                        IsTemporary: false
+                    };
+                    this.MessageBar.add(message);
+                },
+                afterRender: function () {
+                    debugger;
                 }
             });
         }, "FormFieldsMapper");

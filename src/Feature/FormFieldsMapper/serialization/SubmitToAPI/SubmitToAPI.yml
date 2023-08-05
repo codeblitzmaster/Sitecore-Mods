@@ -29,11 +29,6 @@ SharedFields:
           ph="Page.Body"
           uid="{C515B53A-4FBE-452A-9986-4264386EEAD8}" />
         <r
-          id="{4245E970-5890-414D-A0D2-30A40A7A4F52}"
-          par="IsVisible=1&amp;Id=FormClientApi"
-          ph="Page.Body"
-          uid="{3F510E17-BE4F-4653-9956-11589A6BF5C8}" />
-        <r
           id="{08994B8F-7BF1-4963-815D-0FA8D75B3D86}"
           par="Id=MainBorder"
           ph="Page.Body"

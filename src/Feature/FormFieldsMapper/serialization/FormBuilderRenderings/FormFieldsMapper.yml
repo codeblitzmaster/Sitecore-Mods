@@ -23,6 +23,21 @@ SharedFields:
 - ID: "ddab263e-b42e-419a-aa6f-081b7393ca38"
   Hint: Model
   Value: SitecoreMods.Feature.FormFieldsMapper.Models.FormFieldsMapperRenderingModel, SitecoreMods.Feature.FormFieldsMapper
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r>
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{759BEFD1-3323-404D-A243-E0ED81163C03}">
+        <r
+          id="{4245E970-5890-414D-A0D2-30A40A7A4F52}"
+          par="ConfigurationItem=%7bB93005AF-1182-4DCC-9C64-2867F20AC60E%7d&amp;Id=FormClientApi"
+          ph="Page.Body"
+          uid="{366FDEC8-4609-4F9C-8A54-15F23C5FCCD8}" />
+      </d>
+    </r>
 Languages:
 - Language: en
   Versions:

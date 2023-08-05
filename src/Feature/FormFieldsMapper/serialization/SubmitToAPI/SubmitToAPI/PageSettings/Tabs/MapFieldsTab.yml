@@ -11,7 +11,7 @@ SharedFields:
 - ID: "3a98adc3-530b-4281-880d-2d56dcc605af"
   Hint: IsLazyLoaded
   Type: Checkbox
-  Value: 1
+  Value: 0
 - ID: "8d46881c-cdae-4bef-98a8-bef74afb4cb7"
   Hint: IconPadding
   Value: 
@@ -38,8 +38,14 @@ SharedFields:
           s:par="Id=TabBorder"
           s:ph="Page.Body" />
         <r
-          uid="{135003FC-327B-4EB7-92EE-F7A54A0D7B33}"
+          uid="{721C2F32-B10C-46D6-A6F0-74D70910A1FA}"
           p:after="r[@uid='{D75E4DDF-0253-4AB5-899C-55803E2F7478}']"
+          s:id="{8C3B1C75-9DBA-49BC-AC49-CD9AD5559FD6}"
+          s:par="Id=MessageBar"
+          s:ph="Page.Body" />
+        <r
+          uid="{135003FC-327B-4EB7-92EE-F7A54A0D7B33}"
+          p:after="r[@uid='{721C2F32-B10C-46D6-A6F0-74D70910A1FA}']"
           s:id="{4FCB66FF-03DF-4F4E-BD4D-A017CDFC4B09}"
           s:par="IsBusy=1&amp;IsFullWidth=1&amp;Id=ProgressIndicatorPanel"
           s:ph="TabBorder.Content" />
