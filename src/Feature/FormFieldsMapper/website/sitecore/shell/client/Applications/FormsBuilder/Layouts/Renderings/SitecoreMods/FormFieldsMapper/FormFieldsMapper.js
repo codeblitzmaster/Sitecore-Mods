@@ -93,15 +93,32 @@
                         this);
                     this.defineProperty("FormFields", []);
                     this.defineProperty("DestinationFieldsRootItemId", null);
+                    this.defineProperty("HasExistingMappings", false);
+                    this.defineProperty("ExistingMappings", null);
 
-                    this.on("updated:DestinationFieldsRootItem", function (destinationFieldsRootItemId) {
-                        if (destinationFieldsRootItemId != null && destinationFieldsRootItemId != this.DestinationFieldsRootItemId) {
+                    //this.on("updated:FieldsMapper", function (destinationFieldsRootItemId) {
+                    //    if (destinationFieldsRootItemId != null && destinationFieldsRootItemId != this.DestinationFieldsRootItemId) {
+                    //        this.setFormFields();
+                    //        this.DestinationFieldsRootItemId = destinationFieldsRootItemId;
+                    //        this.setDestinationFields(destinationFieldsRootItemId);
+                    //    }
+                    //});
+
+                    this.on("update:FieldsMapper", function (data) {
+                        debugger;
+                        if (data.destinationFieldsRootItemId != null && data.destinationFieldsRootItemId != this.DestinationFieldsRootItemId) {
                             this.setFormFields();
-                            this.DestinationFieldsRootItemId = destinationFieldsRootItemId;
-                            this.setDestinationFields(destinationFieldsRootItemId);
+                            this.DestinationFieldsRootItemId = data.destinationFieldsRootItemId;
+                            if (data.hasOwnProperty("mappings")) {
+                                if (data.mappings.length > 0) {
+                                    this.ExistingMappings = data.mappings;
+                                    this.HasExistingMappings = true;
+                                }
+                            }
+                            debugger;
+                            this.getDestinationFieldsAndBuildTable(this.DestinationFieldsRootItemId);
                         }
                     });
-                    debugger;
                 },
                 loadDone: function () {
                     debugger;
@@ -119,7 +136,7 @@
                 getFormFields: function () {
                     return this.FormFields;
                 },
-                setDestinationFields: function (destinationFieldsRootItemId) {
+                getDestinationFieldsAndBuildTable: function (destinationFieldsRootItemId) {
                     options = {};
                     options.database = Speak.Context.current().contentDatabase;
                     var app = this;
@@ -135,12 +152,22 @@
                                 "Value": "",
                                 "ID": i.$itemId
                             };
+                            // Logic to update back exiting mapping values on the destination fields before rendering table
+                            if (app.HasExistingMappings) {
+                                var existingMappedField = _.find(app.ExistingMappings, function (existingField) {
+                                    return existingField.Name == i.$itemName;
+                                });
+                                if (typeof (existingMappedField) != "undefined") {
+                                    destinationField.Value = existingMappedField.Value;
+                                    debugger;
+                                }
+                            }
                             return destinationField;
                         });
                         app.Items = formattedDestinationFields;
                         this.buildTable();
                         this.app.ProgressIndicatorPanel.IsBusy = false;
-                    }.bind(this));
+                    }.bind(this), options);
                     debugger;
                 },
                 buildTable: function () {
