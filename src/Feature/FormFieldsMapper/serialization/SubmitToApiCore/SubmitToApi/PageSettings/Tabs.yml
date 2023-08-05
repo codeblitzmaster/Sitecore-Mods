@@ -2,7 +2,7 @@
 ID: "649f31ec-352d-4be4-9aa8-0c71ec884630"
 Parent: "2686305a-76c9-4267-844a-db0563db3474"
 Template: "69732646-80b3-4f4f-bee9-7b69c8f3cb24"
-Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI/PageSettings/Tabs
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToApi/PageSettings/Tabs
 DB: core
 Languages:
 - Language: en

@@ -2,7 +2,7 @@
 ID: "42c2758b-d5e8-4dfc-bc5f-3135abe1ede4"
 Parent: "2686305a-76c9-4267-844a-db0563db3474"
 Template: "c79a8816-d6f1-4227-959e-1af7a6260bd6"
-Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI/PageSettings/ApiEndpointQueryDataSource
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToApi/PageSettings/ApiEndpointQueryDataSource
 DB: core
 SharedFields:
 - ID: "12ab538a-58a1-433d-832c-99de2c20cd4c"

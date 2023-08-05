@@ -1,53 +1,35 @@
 ﻿---
-ID: "ba615984-0899-44e6-b041-d201efb72ff1"
-Parent: "a3e5e09f-1422-4050-9414-dc959aa60d7b"
-Template: "5f2c442f-2554-4c80-b1d9-2195fa6168b1"
-Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI
-DB: core
+ID: "314e3419-518a-483f-8fd3-2b39ecd67679"
+Parent: "891e7268-fa3e-4e74-b4b1-c16b206f2165"
+Template: "c2d1d114-3cfe-4558-a9e3-d1a1ec0fcab7"
+Path: /sitecore/system/Settings/Forms/Submit Actions/SubmitToApi
+DB: master
 SharedFields:
-- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
-  Hint: __Renderings
-  Type: layout
-  Value: |
-    <r>
-      <d
-        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
-        l="{5A7CF08C-3647-4F56-B189-9E8C0531FBAF}">
-        <r
-          id="{DAFAFFB8-74AF-4141-A96A-70B16834CEC6}"
-          par="PageCodeScriptFileName=%2fsitecore%2fshell%2fclient%2fApplications%2fFormsBuilder%2fLayouts%2fActions%2fSitecoreMods%2fSubmitToAPI%2fSubmitToAPI.js&amp;SpeakCoreVersion=%7b3F937240-C16E-4229-9641-4CE5B4CB4ABA%7d"
-          ph="Page.Code"
-          uid="{F421CD50-A1F7-417D-A3F8-A8461F81AAB5}" />
-        <r
-          id="{EFCD0AB0-5B9D-4F1D-AB81-BE0336CD273C}"
-          par="IsVisible=0&amp;Id=HeaderTitle"
-          ph="Page.Body"
-          uid="{5A737E02-DACA-4678-A56B-014F334F328C}" />
-        <r
-          id="{EFCD0AB0-5B9D-4F1D-AB81-BE0336CD273C}"
-          par="IsVisible=0&amp;Id=HeaderSubtitle"
-          ph="Page.Body"
-          uid="{C515B53A-4FBE-452A-9986-4264386EEAD8}" />
-        <r
-          id="{08994B8F-7BF1-4963-815D-0FA8D75B3D86}"
-          par="Id=MainBorder"
-          ph="Page.Body"
-          uid="{CC1AB8BC-76DE-4664-AC58-CB91B4425594}" />
-        <r
-          id="{7CE24006-7B34-4678-BC91-7675C6E2C9B9}"
-          par="TabVisualStyle=Progressive&amp;IsVisible=1&amp;DisplayFieldName=Header&amp;ConfigurationItem=%7b649F31EC-352D-4BE4-9AA8-0C71EC884630%7d&amp;Id=Tabs"
-          ph="MainBorder.Content"
-          uid="{30133FD9-4244-44E5-9B41-DED5D1976A9D}" />
-      </d>
-    </r>
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/graph_star.png
+- ID: "2c6e7306-2871-473a-9149-71443182b8e8"
+  Hint: Model Type
+  Value: SitecoreMods.Feature.FormFieldsMapper.SubmitActions.SubmitToApi.SubmitToApiAction
+- ID: "d83b5c6b-7230-419f-bd75-4e2d20c87a18"
+  Hint: Editor
+  Value: "{BA615984-0899-44E6-B041-D201EFB72FF1}"
 Languages:
 - Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Submit to API
   Versions:
   - Version: 1
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20230723T174936Z
-    - ID: "7205a57f-93b4-413a-aa9a-6b16bbc59565"
-      Hint: BrowserTitle
-      Value: Submit to API
+      Value: 20230723T180131Z
+    - ID: "47837625-b3d9-46f1-a73b-ff13dd1c8b25"
+      Hint: Error Message
+      Value: Submitting to API Failed
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

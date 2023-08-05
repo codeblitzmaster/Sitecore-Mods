@@ -2,7 +2,7 @@
 ID: "fee091d4-9b34-43d0-9ec6-ceddc8e42124"
 Parent: "2686305a-76c9-4267-844a-db0563db3474"
 Template: "46efcf7f-6ebb-4059-b9bf-8ef47c4f5e20"
-Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI/PageSettings/HeaderTitle
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToApi/PageSettings/HeaderTitle
 DB: core
 Languages:
 - Language: en

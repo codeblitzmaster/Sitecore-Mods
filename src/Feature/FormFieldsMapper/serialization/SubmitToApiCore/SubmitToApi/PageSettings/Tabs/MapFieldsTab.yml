@@ -2,7 +2,7 @@
 ID: "3e5eb39c-ad36-462d-a3dc-8c9f6f054199"
 Parent: "649f31ec-352d-4be4-9aa8-0c71ec884630"
 Template: "8a7acb1a-0990-4c9e-a6f0-9612d0f5f51c"
-Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToAPI/PageSettings/Tabs/MapFieldsTab
+Path: /sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToApi/PageSettings/Tabs/MapFieldsTab
 DB: core
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"

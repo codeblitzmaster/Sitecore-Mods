@@ -51,6 +51,10 @@
       <HintPath>..\..\..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Sitecore.ExperienceForms, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ExperienceForms.10.3.0\lib\net48\Sitecore.ExperienceForms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Sitecore.Kernel, Version=18.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Kernel.10.3.0\lib\net48\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
@@ -61,9 +65,11 @@
     </Reference>
     <Reference Include="Sitecore.Speak.Client, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Speak.Client.10.3.0\lib\net48\Sitecore.Speak.Client.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.Speak.Components, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Speak.Components.10.3.0\lib\net48\Sitecore.Speak.Components.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
@@ -169,16 +175,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\FormHelper.cs" />
     <Compile Include="Models\Field.cs" />
     <Compile Include="Models\FormFieldsMapperRenderingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubmitActions\SubmitToApi\SubmitToApiActionData.cs" />
+    <Compile Include="SubmitActions\SubmitToApi\SubmitToApiAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.FormFieldsMapper.Serialization.config" />
     <Content Include="App_Config\Include\Feature\Feature.FormFieldsMapper.Pipelines.config" />
     <None Include="Properties\PublishProfiles\Debug.pubxml" />
     <None Include="Web.config" />
-    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Actions\SitecoreMods\SubmitToAPI\SubmitToAPI.js" />
+    <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Actions\SitecoreMods\SubmitToApi\SubmitToApi.js" />
     <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\FormFieldsMapper.css" />
     <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\css\vendor\jquery.mentionsInput.css" />
     <Content Include="sitecore\shell\client\Applications\FormsBuilder\Layouts\Renderings\SitecoreMods\FormFieldsMapper\FormFieldsMapper.cshtml" />
