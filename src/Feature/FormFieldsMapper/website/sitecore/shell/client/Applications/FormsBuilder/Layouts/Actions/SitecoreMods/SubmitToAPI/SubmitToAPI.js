@@ -14,12 +14,12 @@
 
                     //this.Tabs.on("loaded", function () {
                        
-                    //    debugger;
+                    //    //debugger;
                     //});
 
                     this.Tabs.on("loaded:ApiEndpointTab", function () {
                         app.bindApiEndpointEvents();
-                        debugger;
+                        //debugger;
                         app.ApiEndpointTabApp.ApiEndpointTreeView.SelectedItemId = app.Parameters.ApiEndpointId;
                         //app.ApiEndpointTabApp.ApiEndpointTreeView.setSelectedItemId(app.Parameters.ApiEndpointId);
                     });
@@ -34,12 +34,12 @@
                             Sitecore.Speak.app.MapFieldsTabApp.FormFieldsMapper.trigger("update:FieldsMapper", data);
                             Sitecore.Speak.app.enableTab("MapFieldsTab");
                         }
-                        debugger;
+                        //debugger;
                     });
 
                     ////Triggered when tab is selected
                     //this.Tabs.on("change:SelectedValue", function (selectedTab) {
-                    //    debugger;
+                    //    //debugger;
                     //});
 
                     if (parentApp) {
@@ -50,7 +50,7 @@
                 loadDone: function (parameters) {
                     //this.setFormFields();
                     this.Parameters = parameters || {};
-                    debugger;
+                    //debugger;
 
                 },
                 bindApiEndpointEvents: function () {
@@ -90,7 +90,7 @@
                 getData: function () {
                     this.Parameters.Mappings = this.MapFieldsTabApp.FormFieldsMapper.getMappings();
                     this.Parameters.ApiEndpointId = apiEndpointId;
-                    debugger;
+                    //debugger;
                     return this.Parameters;
                 }
             };

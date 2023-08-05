@@ -2,7 +2,7 @@
 ////    Speak.component({
 ////        name: "FormFieldsMapper",
 ////        initialize: function (app) {
-////            debugger;
+////            //debugger;
 ////        },
 ////        getTheListOfComponents: function (app) {
 ////            var componentsList = '';
@@ -83,7 +83,7 @@
 
             return Speak.extend({}, Collection.prototype, {
                 initialize: function () {
-                    debugger;
+                    //debugger;
                 },
                 initialized: function () {
                     Collection.prototype.initialized.call(this);
@@ -105,7 +105,7 @@
                     //});
 
                     this.on("update:FieldsMapper", function (data) {
-                        debugger;
+                        //debugger;
                         if (data.destinationFieldsRootItemId != null && data.destinationFieldsRootItemId != this.DestinationFieldsRootItemId) {
                             this.setFormFields();
                             this.DestinationFieldsRootItemId = data.destinationFieldsRootItemId;
@@ -115,13 +115,13 @@
                                     this.HasExistingMappings = true;
                                 }
                             }
-                            debugger;
+                            //debugger;
                             this.getDestinationFieldsAndBuildTable(this.DestinationFieldsRootItemId);
                         }
                     });
                 },
                 loadDone: function () {
-                    debugger;
+                    //debugger;
                 },
                 setFormFields: function () {
                     var formFields = this.FormClientApi.getFields();
@@ -159,7 +159,7 @@
                                 });
                                 if (typeof (existingMappedField) != "undefined") {
                                     destinationField.Value = existingMappedField.Value;
-                                    debugger;
+                                    //debugger;
                                 }
                             }
                             return destinationField;
@@ -168,7 +168,7 @@
                         this.buildTable();
                         this.app.ProgressIndicatorPanel.IsBusy = false;
                     }.bind(this), options);
-                    debugger;
+                    //debugger;
                 },
                 buildTable: function () {
                     if (this.Items.length < 1) {
@@ -211,41 +211,51 @@
                             var $sourceColumn = $('<td>');
                             var $sourceColumnTextarea = $('<textarea>', {
                                 id: item.Name,
-                                text: item.Value,
+                                //text: item.Value,
                                 "class": "form-control source-field",
                                 required: item.IsRequired,
                                 "data-row": idx
                             });
+                            $sourceColumnTextarea.val(item.Value);
                             $sourceColumn.append($sourceColumnTextarea);
                             $tr.append($sourceColumn);
-                            debugger;
+                            //debugger;
                             $tableBody.append($tr);
                         });
 
                         var formFields = this.getFormFields();
-                        console.log(formFields);
+                        //console.log(formFields);
 
-                        $tableBody.find(".source-field").mentionsInput({
-                            allowRepeat: true,
-                            onDataRequest: function (model, query, callback) {
-                                var data = formFields;
-                                data = _.filter(data, function (item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
-                                callback.call(this, data);
-                            },
-                            templates: {
-                                mentionItemSyntax: _.template('@[<%= value %>]'),
-                            }
-                        });
                         var app = this;
-                        $tableBody.find(".source-field").on("input", function () {
-                            var idx = $(this).data("row");
-                            $(this).mentionsInput("val", function (newValue) {
-                                //console.log(newValue);
-                                app.Items[idx].Value = newValue;
+
+                        $tableBody.find(".source-field").each(function (idx,field) {
+                            var $field = $(field);
+                            var fieldValue = $field.val();
+                            $field.mentionsInput({
+                                defaultValue: fieldValue,
+                                //allowRepeat: true,
+                                onDataRequest: function (model, query, callback) {
+                                    var data = formFields;
+                                    data = _.filter(data, function (item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+                                    callback.call(this, data);
+                                },
+                                templates: {
+                                    mentionItemSyntax: _.template('@[<%= value %>]'),
+                                }
                             });
-                            //console.log("Updated Value:", app.Items[idx].Value);
-                            app.validateItems();
+                            $field.on("keydown", function () {
+                                var idx = $(this).data("row");
+                                $(this).mentionsInput("val", function (newValue) {
+                                    //console.log(newValue);
+                                    app.Items[idx].Value = newValue;
+                                });
+                                //console.log("Updated Value:", app.Items[idx].Value);
+                                app.validateItems();
+                            });
                         });
+                        //$tableBody.find(".source-field")
+
+                        app.validateItems();
                     }
                 },
                 renderFormFields: function () {
@@ -267,7 +277,6 @@
                             return true;
                         });
                     isValid = this.DestinationFieldsRootItemId != null && isMappingsValid;
-                    debugger;
                     parentApp.setSelectability(this, isValid);
                 },
                 showMessage: function (text, type) {
@@ -280,7 +289,7 @@
                     this.MessageBar.add(message);
                 },
                 afterRender: function () {
-                    debugger;
+                    //debugger;
                 }
             });
         }, "FormFieldsMapper");
