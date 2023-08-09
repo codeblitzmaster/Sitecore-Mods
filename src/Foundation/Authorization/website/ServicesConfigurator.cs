@@ -1,7 +1,8 @@
-﻿using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Sitecore.DependencyInjection;
 using SitecoreMods.Foundation.Authorization.Factory;
+using SitecoreMods.Foundation.Authorization.Interfaces;
+using SitecoreMods.Foundation.Authorization.Services;
 
 namespace SitecoreMods.Foundation.Authorization
 {
@@ -9,7 +10,9 @@ namespace SitecoreMods.Foundation.Authorization
     {
         public void Configure(IServiceCollection serviceCollection)
         {
+            serviceCollection.AddHttpClient();
             serviceCollection.AddSingleton<RequestFactory>();
+            serviceCollection.AddSingleton<IApiIntegrationService, ApiIntegrationService>();
         }
     }
 }

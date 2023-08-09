@@ -16,6 +16,14 @@ using SitecoreMods.Foundation.Authorization.RequestTypes;
 using Sitecore;
 using SitecoreMods.Foundation.Authorization.Enums;
 using SitecoreMods.Foundation.Authorization.Factory;
+using Sitecore.Abstractions;
+using System.Threading;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Formatting = System.Xml.Formatting;
+using Sitecore.Configuration.KnownSettings;
+using SitecoreMods.Foundation.Authorization.Extensions;
+using AuthorizationSettings = SitecoreMods.Foundation.Authorization.Models.AuthorizationSettings;
 
 namespace SitecoreMods.Foundation.Authorization.Services
 {
@@ -24,24 +32,48 @@ namespace SitecoreMods.Foundation.Authorization.Services
         private static readonly ConcurrentDictionary<string, RequestSettings> RequestSettingsCache = new ConcurrentDictionary<string, RequestSettings>();
         private static readonly ConcurrentDictionary<string, BaseRequest> RequestHandlersCache = new ConcurrentDictionary<string, BaseRequest>();
         private readonly RequestFactory _requestFactory;
+        private readonly BaseLog _baseLog;
+        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
-        public ApiIntegrationService(RequestFactory requestFactory)
+        public ApiIntegrationService(RequestFactory requestFactory, BaseLog baseLog)
         {
             _requestFactory = requestFactory;
+            _baseLog = baseLog;
         }
 
-        public Task<ResponseData> Fire(ID apiIntegrationItemId, Dictionary<string, object> data)
+        public async Task<ResponseData> FireAsync(ID apiIntegrationItemId, Dictionary<string, object> data)
         {
             Item apiIntegrationItem;
             using (new SecurityDisabler())
                 apiIntegrationItem = Sitecore.Context.Database.GetItem(apiIntegrationItemId);
 
+            try
+            {
 
-            RequestSettings requestSettings = GetRequestSettings(apiIntegrationItem);
-            BaseRequest requestSender = GetRequest(apiIntegrationItem, requestSettings);
+                RequestSettings requestSettings = GetRequestSettings(apiIntegrationItem);
+                BaseRequest requestSender = GetRequest(apiIntegrationItem, requestSettings);
 
+                // TODO: Add logic to set content type header
+                requestSettings.SetContentTypeHeader(SerializationType.Json);
 
-            throw new NotImplementedException();
+                if (data != null)
+                {
+                    var parsedData = ExpandFlattenedObject(data);
+                    var content = JsonConvert.SerializeObject(parsedData, new ExpandoObjectConverter());
+                    return await requestSender.SendRequestAsync(requestSettings, content, _cancellationTokenSource.Token);
+                }
+                var responseData = await requestSender.SendRequestAsync(requestSettings, null, _cancellationTokenSource.Token);
+                if (_baseLog.DebugEnabled(this))
+                {
+                    _baseLog.Debug($"::ApiIntegration:: Fired successful integration for {apiIntegrationItem.ID}/{apiIntegrationItem.Name}", this);
+                }
+                return responseData;
+            }
+            catch (Exception ex)
+            {
+                _baseLog.Error($"::ApiIntegration:: Error occured while executing the integration for {apiIntegrationItem.ID}/{apiIntegrationItem.Name}", ex, this);
+                throw;
+            }
         }
 
         private BaseRequest GetRequest(Item apiIntegrationItem, RequestSettings requestSettings)
@@ -89,13 +121,13 @@ namespace SitecoreMods.Foundation.Authorization.Services
         {
             if (Enum.TryParse(authItem.TemplateName, true, out AuthorizationTypes result))
                 return result;
-            throw new NotSupportedException($"Authorization type {(object)authItem.TemplateName} defined by item {(object)authItem.Uri} is not supported.");
+            throw new NotSupportedException($"::ApiIntegration:: Authorization type {(object)authItem.TemplateName} defined by item {(object)authItem.Uri} is not supported.");
         }
 
 
-        public Task<ResponseData> Fire(string apiIntegrationItemId, Dictionary<string, object> data)
+        public async Task<ResponseData> FireAsync(string apiIntegrationItemId, Dictionary<string, object> data)
         {
-            return Fire(ID.Parse(apiIntegrationItemId), data);
+            return await FireAsync(ID.Parse(apiIntegrationItemId), data);
         }
 
         private static RequestSettings GetRequestSettings(Item apiIntegrationItem)
@@ -139,6 +171,51 @@ namespace SitecoreMods.Foundation.Authorization.Services
         private string GetAuthCacheKey(Item apiIntegrationItem, Item authItem) =>
             $"{(object)authItem?.ID}|{(object)authItem?.Statistics.Revision}|{(object)apiIntegrationItem.Statistics.Revision}";
 
+        private static Dictionary<string, object> ExpandFlattenedObject(Dictionary<string, object> flattenedObject)
+        {
+            Dictionary<string, object> expandedObject = new Dictionary<string, object>();
 
+            foreach (var kvp in flattenedObject)
+            {
+                string[] keys = kvp.Key.Split('.');
+                string[] arrayIndexParts = keys[keys.Length - 1].Split('[');
+
+                // Initialize nested dictionaries if needed
+                Dictionary<string, object> currentDict = expandedObject;
+                for (int i = 0; i < keys.Length - 1; i++)
+                {
+                    if (!currentDict.ContainsKey(keys[i]))
+                    {
+                        currentDict[keys[i]] = new Dictionary<string, object>();
+                    }
+                    currentDict = (Dictionary<string, object>)currentDict[keys[i]];
+                }
+
+                // Handle array index if present
+                if (arrayIndexParts.Length > 1)
+                {
+                    string arrayKey = arrayIndexParts[0];
+                    int arrayIndex = int.Parse(arrayIndexParts[1].TrimEnd(']'));
+
+                    if (!currentDict.ContainsKey(arrayKey))
+                    {
+                        currentDict[arrayKey] = new List<object>();
+                    }
+
+                    List<object> currentList = (List<object>)currentDict[arrayKey];
+                    while (currentList.Count <= arrayIndex)
+                    {
+                        currentList.Add(null);
+                    }
+                    currentList[arrayIndex] = kvp.Value;
+                }
+                else
+                {
+                    currentDict[keys[keys.Length - 1]] = kvp.Value;
+                }
+            }
+
+            return expandedObject;
+        }
     }
 }

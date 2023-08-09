@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Sitecore.Abstractions;
-using Sitecore.Common.HttpClient;
 using SitecoreMods.Foundation.Authorization.Models;
 using ResponseData = SitecoreMods.Foundation.Authorization.Models.ResponseData;
 
@@ -19,6 +18,7 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly BaseLog _log;
         protected BaseLog Log { get; }
+        public HttpClient HttpClient;
 
 
         protected BaseRequest(IHttpClientFactory httpClientFactory, BaseLog log)
@@ -29,13 +29,87 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
 
         public async Task<ResponseData> SendRequestAsync(RequestSettings requestSettings, string content, CancellationToken token)
         {
-            var httpClient = _httpClientFactory.CreateClient("ApiClient");
-            var request = new HttpRequestMessage(new HttpMethod(requestSettings.Method), requestSettings.Url);
-            return new ResponseData()
+            HttpClient = _httpClientFactory.CreateClient();
+
+            var errors = ValidateAuthProperties()?.ToList() ?? throw new ArgumentNullException("ValidateAuthProperties()");
+            if (errors.Any())
             {
-                IsError = true,
-                ErrorMessage = "Not Implemented"
-            };
+                string message = "::SitecoreMods:Authorization:: Cannot validate authorization properties. Errors: '" + string.Join(";",errors) + "'";
+                _log.Error(message, this);
+                return new ResponseData()
+                {
+                    IsError = true,
+                    ErrorMessage = message
+                };
+            }
+            return await SendAsync(content, requestSettings, GetAuthorizationParameters(), token).ConfigureAwait(false);
+        }
+
+        public virtual async Task<ResponseData> SendAsync(string content, RequestSettings requestSettings, AuthorizationParameters authorizationParameters, CancellationToken cancellationToken)
+        {
+            var requestUrlString = requestSettings.Url + (authorizationParameters.QueryParameters.Count > 0 ? "?" + authorizationParameters.QueryParameters : string.Empty);
+            var requestUrl = new Uri(requestUrlString);
+            HttpMethod httpMethod = new HttpMethod(requestSettings.Method);
+            
+            HttpRequestMessage request = new HttpRequestMessage(httpMethod, requestUrl);
+
+            foreach (var key in authorizationParameters.Headers.AllKeys)
+            {
+                request.Headers.Add(key, authorizationParameters.Headers[key]);
+            }
+
+            if (httpMethod != HttpMethod.Get)
+            {
+                StringContent stringContent = new StringContent(content);
+                if (!string.IsNullOrWhiteSpace(requestSettings.ContentTypeHeader))
+                    stringContent.Headers.ContentType = new MediaTypeHeaderValue(requestSettings.ContentTypeHeader);
+                request.Content = stringContent;
+            }
+
+            if (cancellationToken.IsCancellationRequested)
+                return null;
+
+            ResponseData response;
+            try
+            {
+                HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
+                response = new ResponseData()
+                {
+                    StatusCode = httpResponseMessage.StatusCode,
+                    IsError = !httpResponseMessage.IsSuccessStatusCode,
+                    ErrorMessage = httpResponseMessage.ReasonPhrase,
+                    Content = httpResponseMessage.Content
+                };
+
+                if(!response.IsSuccessStatusCode)
+                {
+                    _log.Error($"::SitecoreMods:Authorization:: Request not successful {requestUrlString}. Status Code: {response.StatusCode}", this);
+                    var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    _log.Error($"::SitecoreMods:Authorization:: Request not successful {requestUrlString}. Return Response Content: \n{responseContent}", this);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                _log.Error($"::SitecoreMods:Authorization:: Request failed {requestUrlString}", this);
+                response = new ResponseData()
+                {
+                    IsError = true,
+                    ErrorMessage = ex.Message,
+                    Exception = (Exception)ex
+                };
+            }
+            catch (TaskCanceledException ex)
+            {
+                string message = $"::SitecoreMods:Authorization:: Request timed out or cancelled by user. {requestUrlString}";
+                _log.Error(message, this);
+                response = new ResponseData()
+                {
+                    IsError = true,
+                    ErrorMessage = message,
+                    Exception = (Exception)ex
+                };
+            }
+            return response;
         }
 
         protected abstract IEnumerable<string> ValidateAuthProperties();
@@ -44,17 +118,17 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
 
         public void Dispose()
         {
-            //Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        //protected virtual void Dispose(bool disposing)
-        //{
-        //    if (this._disposed)
-        //        return;
-        //    if (disposing && this._httpClient.IsValueCreated)
-        //        this._httpClient.Value.Dispose();
-        //    this._disposed = true;
-        //}
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+            if (disposing)
+                HttpClient.Dispose();
+            _disposed = true;
+        }
     }
 }

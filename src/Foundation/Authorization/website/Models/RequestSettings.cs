@@ -12,7 +12,8 @@ namespace SitecoreMods.Foundation.Authorization.Models
     public class RequestSettings
     {
         public string Url { get; set; }
-        public string Method { get; set; }
+        public string Method { get; set; } = "POST";
+        public string ContentTypeHeader { get; set; }
         public string ContentType { get; set; }
         public Dictionary<string, string> Headers { get; set; }
         public Dictionary<string, string> QueryString { get; set; }

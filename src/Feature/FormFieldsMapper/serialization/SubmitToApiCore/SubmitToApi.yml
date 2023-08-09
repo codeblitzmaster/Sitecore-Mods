@@ -15,7 +15,7 @@ SharedFields:
         l="{5A7CF08C-3647-4F56-B189-9E8C0531FBAF}">
         <r
           id="{DAFAFFB8-74AF-4141-A96A-70B16834CEC6}"
-          par="PageCodeScriptFileName=%2fsitecore%2fshell%2fclient%2fApplications%2fFormsBuilder%2fLayouts%2fActions%2fSitecoreMods%2fSubmitToAPI%2fSubmitToSubmitToApi.js&amp;SpeakCoreVersion=%7b3F937240-C16E-4229-9641-4CE5B4CB4ABA%7d"
+          par="PageCodeScriptFileName=%2fsitecore%2fshell%2fclient%2fApplications%2fFormsBuilder%2fLayouts%2fActions%2fSitecoreMods%2fSubmitToApi%2fSubmitToApi.js&amp;SpeakCoreVersion=%7b3F937240-C16E-4229-9641-4CE5B4CB4ABA%7d"
           ph="Page.Code"
           uid="{F421CD50-A1F7-417D-A3F8-A8461F81AAB5}" />
         <r

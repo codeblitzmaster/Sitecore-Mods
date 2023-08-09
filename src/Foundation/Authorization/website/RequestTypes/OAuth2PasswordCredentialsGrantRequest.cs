@@ -47,7 +47,7 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
         {
             lock (_tokenLocker)
             {
-                string tokenEndpoint = GetTokenEndpoint(this._tokenClient.Value, _authProperties.GetPropertyValue(AuthorityUrlFieldName));
+                string tokenEndpoint = GetTokenEndpoint(_tokenClient.Value, _authProperties.GetPropertyValue(AuthorityUrlFieldName));
                 if (tokenEndpoint == null)
                 {
                     _accessToken = null;
