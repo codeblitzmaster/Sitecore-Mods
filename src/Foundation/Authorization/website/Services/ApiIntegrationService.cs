@@ -80,10 +80,10 @@ namespace SitecoreMods.Foundation.Authorization.Services
         {
             Item authItem = null;
 
-            if (!string.IsNullOrEmpty(apiIntegrationItem[ApiIntegrationFieldIDs.Authorization]))
+            if (!string.IsNullOrEmpty(apiIntegrationItem.Fields[ApiIntegrationFieldIDs.Authorization].Value))
             {
                 using (new SecurityDisabler())
-                    authItem = apiIntegrationItem.Database.GetItem(apiIntegrationItem[ApiIntegrationFieldIDs.Authorization]);
+                    authItem = apiIntegrationItem.Database.GetItem(apiIntegrationItem.Fields[ApiIntegrationFieldIDs.Authorization].Value);
                 
                 Assert.IsNotNull((object)authItem, $"Authorization item not found for Api Integration item {(object)apiIntegrationItem.Uri}");
             }
