@@ -117,6 +117,7 @@
                             }
                             //debugger;
                             this.getDestinationFieldsAndBuildTable(this.DestinationFieldsRootItemId);
+                            this.validateItems();
                         }
                     });
                 },
@@ -189,6 +190,8 @@
                             </tr>
                          */
                         var $tableBody = $("#form-fields-mapper tbody");
+                        // clear all rows before adding new ones
+                        $tableBody.empty();
                         _.each(this.Items, function (item, idx) {
                             var $tr = $('<tr>');
 

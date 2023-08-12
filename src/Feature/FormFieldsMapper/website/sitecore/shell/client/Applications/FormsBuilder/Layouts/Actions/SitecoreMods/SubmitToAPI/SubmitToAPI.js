@@ -64,7 +64,6 @@
                         //this.Tabs.toggleEnabledAt(1);
                         apiEndpoint = selectedItem;
                         apiEndpointId = selectedItem.$itemId;
-
                         if (Sitecore.Speak.app.hasOwnProperty("MapFieldsTabApp")) {
                             var data = { destinationFieldsRootItemId: apiEndpointId };
                             //Notify FormFieldsMapper about ApiEndpoint selection change to rerender if selected item is different than previous one
@@ -90,8 +89,10 @@
                 getData: function () {
                     this.Parameters.Mappings = this.MapFieldsTabApp.FormFieldsMapper.getMappings();
                     this.Parameters.ApiEndpointId = apiEndpointId;
-                    //debugger;
                     return this.Parameters;
+                },
+                getDescription: function () {
+                    return apiEndpoint.$itemName;
                 }
             };
         });
