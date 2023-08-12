@@ -246,7 +246,7 @@
                                     mentionItemSyntax: _.template('@[<%= value %>]'),
                                 }
                             });
-                            $field.on("keydown", function () {
+                            $field.on("keyup", _.debounce(function () {
                                 var idx = $(this).data("row");
                                 $(this).mentionsInput("val", function (newValue) {
                                     //console.log(newValue);
@@ -254,7 +254,7 @@
                                 });
                                 //console.log("Updated Value:", app.Items[idx].Value);
                                 app.validateItems();
-                            });
+                            },500));
                         });
                         //$tableBody.find(".source-field")
 
