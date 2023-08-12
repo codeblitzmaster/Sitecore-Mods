@@ -80,12 +80,15 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
                     ErrorMessage = httpResponseMessage.ReasonPhrase,
                     Content = httpResponseMessage.Content
                 };
-
-                if(!response.IsSuccessStatusCode)
+                var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                if (!response.IsSuccessStatusCode)
                 {
                     _log.Error($"::SitecoreMods:Authorization:: Request not successful {requestUrlString}. Status Code: {response.StatusCode}", this);
-                    var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                     _log.Error($"::SitecoreMods:Authorization:: Request not successful {requestUrlString}. Return Response Content: \n{responseContent}", this);
+                }
+                else
+                {
+                    _log.Info($"::SitecoreMods:Authorization:: Request Successful {requestUrlString}. Status Code: {response.StatusCode} \n Return Response Content: \n{responseContent}", this);
                 }
             }
             catch (HttpRequestException ex)
