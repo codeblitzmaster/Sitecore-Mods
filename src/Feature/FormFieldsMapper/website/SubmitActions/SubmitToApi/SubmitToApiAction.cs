@@ -18,21 +18,21 @@ namespace SitecoreMods.Feature.FormFieldsMapper.SubmitActions.SubmitToApi
 {
     public class SubmitToApiAction : SubmitActionBase<SubmitToApiActionData>
     {
-        private IApiIntegrationService _apiIntegrationService;
+        private readonly ILogger _logger;
+        private readonly IApiIntegrationService _apiIntegrationService;
         /// <summary>
         /// Initializes a new instance of the <see cref="SubmitToApiAction"/> class.
         /// </summary>
         /// <param name="submitActionData">The submit action data.</param>
-        public SubmitToApiAction(ISubmitActionData submitActionData) : base(submitActionData)
+        public SubmitToApiAction(ISubmitActionData submitActionData) : this(submitActionData, ServiceLocator.ServiceProvider.GetService<IApiIntegrationService>(), ServiceLocator.ServiceProvider.GetService<ILogger>())
         {
         }
 
-        public SubmitToApiAction(ISubmitActionData submitActionData, IApiIntegrationService apiIntegrationService) : this(submitActionData)
+        public SubmitToApiAction(ISubmitActionData submitActionData, IApiIntegrationService apiIntegrationService, ILogger logger) : base(submitActionData)
         {
             _apiIntegrationService = apiIntegrationService;
+            _logger = logger;
         }
-
-        protected virtual IApiIntegrationService ApiIntegrationService => _apiIntegrationService ?? (_apiIntegrationService = ServiceLocator.ServiceProvider.GetService<IApiIntegrationService>());
 
         protected override bool Execute(SubmitToApiActionData data, FormSubmitContext formSubmitContext)
         {
@@ -42,7 +42,6 @@ namespace SitecoreMods.Feature.FormFieldsMapper.SubmitActions.SubmitToApi
                 Logger.Info(Invariant($"Form {formSubmitContext.FormId} submitted successfully."), this);
             }
 
-            var test = data;
             var postData = new Dictionary<string, object>();
 
             var nonEmptyFields = data.Mappings.Where(x => !string.IsNullOrWhiteSpace(x.Value));
@@ -53,7 +52,7 @@ namespace SitecoreMods.Feature.FormFieldsMapper.SubmitActions.SubmitToApi
                 postData.Add(field.Name, value);
             }
 
-            ApiIntegrationService.FireAsync(data.ApiEndpointId, postData);
+            _apiIntegrationService.FireAsync(data.ApiEndpointId, postData);
 
             return true;
         }

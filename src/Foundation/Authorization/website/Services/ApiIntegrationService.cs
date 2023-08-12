@@ -53,7 +53,7 @@ namespace SitecoreMods.Foundation.Authorization.Services
                 RequestSettings requestSettings = GetRequestSettings(apiIntegrationItem);
                 BaseRequest requestSender = GetRequest(apiIntegrationItem, requestSettings);
 
-                // TODO: Add logic to set content type header
+                // TODO: Enhancement: Add logic to set content type header via field on the api integration item
                 requestSettings.SetContentTypeHeader(SerializationType.Json);
 
                 if (data != null)

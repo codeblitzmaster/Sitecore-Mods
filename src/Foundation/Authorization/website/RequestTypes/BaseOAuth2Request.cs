@@ -32,7 +32,6 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
                 errorWhenEmptyToken = GetResponseDataWithErrorWhenEmptyToken(authorizationParameters);
                 if (errorWhenEmptyToken != null)
                     return errorWhenEmptyToken;
-                // ISSUE: reference to a compiler-generated method
                 responseData = await base.SendAsync(content, requestSettings, authorizationParameters, token).ConfigureAwait(false);
             }
             return responseData;
