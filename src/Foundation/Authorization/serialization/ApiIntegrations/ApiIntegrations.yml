@@ -1,0 +1,23 @@
+﻿---
+ID: "2a7d9fff-a906-4db1-965e-df659e51fc83"
+Parent: "13d6d6c6-c50b-4bbd-b331-2b04f1a58f21"
+Template: "1145b7f5-3d8b-4573-9b82-f3f3ca4aff8c"
+Path: /sitecore/system/ApiIntegrations
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{94DC201B-F80E-430F-9C4C-0B0268319476}"
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: API Integrations
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230731T163133Z
