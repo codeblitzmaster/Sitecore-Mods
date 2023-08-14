@@ -60,7 +60,7 @@
                         Speak.module("bclSession").unauthorized();
                         return;
                     }
-                    console.log(data);
+                    //console.log(data);
                     callBack(data);
                 });
             };
@@ -83,7 +83,6 @@
 
             return Speak.extend({}, Collection.prototype, {
                 initialize: function () {
-                    //debugger;
                 },
                 initialized: function () {
                     Collection.prototype.initialized.call(this);
@@ -93,36 +92,30 @@
                         this);
                     this.defineProperty("FormFields", []);
                     this.defineProperty("DestinationFieldsRootItemId", null);
+                    this.defineProperty("DestinationFieldsRootItemName", null);
                     this.defineProperty("HasExistingMappings", false);
                     this.defineProperty("ExistingMappings", null);
 
-                    //this.on("updated:FieldsMapper", function (destinationFieldsRootItemId) {
-                    //    if (destinationFieldsRootItemId != null && destinationFieldsRootItemId != this.DestinationFieldsRootItemId) {
-                    //        this.setFormFields();
-                    //        this.DestinationFieldsRootItemId = destinationFieldsRootItemId;
-                    //        this.setDestinationFields(destinationFieldsRootItemId);
-                    //    }
-                    //});
-
                     this.on("update:FieldsMapper", function (data) {
-                        //debugger;
                         if (data.destinationFieldsRootItemId != null && data.destinationFieldsRootItemId != this.DestinationFieldsRootItemId) {
                             this.setFormFields();
                             this.DestinationFieldsRootItemId = data.destinationFieldsRootItemId;
+                            this.DestinationFieldsRootItemName = data.destinationFieldsRootItemName;
                             if (data.hasOwnProperty("mappings")) {
                                 if (data.mappings.length > 0) {
                                     this.ExistingMappings = data.mappings;
                                     this.HasExistingMappings = true;
                                 }
                             }
-                            //debugger;
                             this.getDestinationFieldsAndBuildTable(this.DestinationFieldsRootItemId);
                             this.validateItems();
+                        }
+                        if (this.Debug) {
+                            this.renderDebugInfo();
                         }
                     });
                 },
                 loadDone: function () {
-                    //debugger;
                 },
                 setFormFields: function () {
                     var formFields = this.FormClientApi.getFields();
@@ -132,7 +125,8 @@
                             name: field.name
                         };
                     });
-                    this.renderFormFields();
+                    
+                    
                 },
                 getFormFields: function () {
                     return this.FormFields;
@@ -160,7 +154,6 @@
                                 });
                                 if (typeof (existingMappedField) != "undefined") {
                                     destinationField.Value = existingMappedField.Value;
-                                    //debugger;
                                 }
                             }
                             return destinationField;
@@ -169,7 +162,6 @@
                         this.buildTable();
                         this.app.ProgressIndicatorPanel.IsBusy = false;
                     }.bind(this), options);
-                    //debugger;
                 },
                 buildTable: function () {
                     if (this.Items.length < 1) {
@@ -222,12 +214,10 @@
                             $sourceColumnTextarea.val(item.Value);
                             $sourceColumn.append($sourceColumnTextarea);
                             $tr.append($sourceColumn);
-                            //debugger;
                             $tableBody.append($tr);
                         });
 
                         var formFields = this.getFormFields();
-                        //console.log(formFields);
 
                         var app = this;
 
@@ -253,18 +243,20 @@
                                     app.Items[idx].Value = newValue;
                                 });
                                 //console.log("Updated Value:", app.Items[idx].Value);
+                                // re-validate items on every change in source field
                                 app.validateItems();
                             },500));
                         });
-                        //$tableBody.find(".source-field")
-
+                        // validate items on load
                         app.validateItems();
                     }
                 },
-                renderFormFields: function () {
+                renderDebugInfo: function () {
                     var formFieldsList = '';
                     $(this.FormFields).each(function () { formFieldsList += '<li>' + this.name + ' (' + this.id + ')' + '</li>'; });
-                    $('.sc-FormFieldsMapper[data-sc-id="' + this.id + '"] .debug-info').html('<ul>' + formFieldsList + '</ul>');
+                    $('.sc-FormFieldsMapper[data-sc-id="' + this.id + '"] .debug-info').html('<div><p><b>Form Fields</b></p><ul>' + formFieldsList + '</ul></div>');
+                    $('.sc-FormFieldsMapper[data-sc-id="' + this.id + '"] .debug-info').append('<p><b>Destination Fields Root: </b>' + this.DestinationFieldsRootItemName + ' (' + this.DestinationFieldsRootItemId + ')' + '</p>');
+                    $('.sc-FormFieldsMapper[data-sc-id="' + this.id + '"] .debug-info').append('<div><p><b>Mappings</b></p><pre id="mappings-json"></pre></div>');
                 },
                 getMappings: function () {
                     return this.Items;
@@ -281,6 +273,9 @@
                         });
                     isValid = this.DestinationFieldsRootItemId != null && isMappingsValid;
                     parentApp.setSelectability(this, isValid);
+                    if (this.Debug) {
+                        $('.sc-FormFieldsMapper[data-sc-id="' + this.id + '"] .debug-info #mappings-json').html(JSON.stringify(this.Items, null, 2));
+                    }
                 },
                 showMessage: function (text, type) {
                     var message = {
@@ -292,7 +287,6 @@
                     this.MessageBar.add(message);
                 },
                 afterRender: function () {
-                    //debugger;
                 }
             });
         }, "FormFieldsMapper");

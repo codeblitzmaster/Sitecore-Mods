@@ -53,7 +53,7 @@ SharedFields:
           uid="{5C2B93E5-DC10-4B96-AD7B-DE7A45C49934}"
           p:after="*[1=2]"
           s:id="{0F9D2A0C-07F9-475F-9331-E66A42B32F07}"
-          s:par="Id=FormFieldsMapper"
+          s:par="ConfigurationItem=%7b328AD313-6166-4697-BC78-06B86BDD7EF7%7d&amp;Id=FormFieldsMapper"
           s:ph="ProgressIndicatorPanel.Content" />
       </d>
     </r>

@@ -1,0 +1,23 @@
+﻿---
+ID: "328ad313-6166-4697-bc78-06b86bdd7ef7"
+Parent: "3e5eb39c-ad36-462d-a3dc-8c9f6f054199"
+Template: "7596c319-7a5d-4e14-a6fd-780ffcad3c70"
+Path: "/sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToApi/PageSettings/Tabs/MapFieldsTab/FormFieldsMapper-Parameters"
+DB: core
+Languages:
+- Language: en
+  Fields:
+  - ID: "493f3427-3d4b-4144-bb53-44a000e28f5d"
+    Hint: Debug
+    Type: Checkbox
+    Value: 0
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230814T192541Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
