@@ -11,7 +11,7 @@ SharedFields:
 - ID: "3a98adc3-530b-4281-880d-2d56dcc605af"
   Hint: IsLazyLoaded
   Type: Checkbox
-  Value: 0
+  Value: 1
 - ID: "8d46881c-cdae-4bef-98a8-bef74afb4cb7"
   Hint: IconPadding
   Value: 
