@@ -47,7 +47,7 @@ namespace SitecoreMods.Feature.FormFieldsMapper.SubmitActions.SubmitToApi
 
             foreach (Field field in nonEmptyFields)
             {
-                var value = field.GetAtMentionedParsedValue(formSubmitContext.Fields);
+                var value = field.GetAtMentionedParsedValue(formSubmitContext);
                 postData.Add(field.Name, value);
             }
 
