@@ -18,8 +18,12 @@ namespace SitecoreMods.Foundation.Authorization.Models
         public bool IsSuccessStatusCode => this.StatusCode >= HttpStatusCode.OK && this.StatusCode <= (HttpStatusCode)299;
 
         /// <summary>Gets or sets the content.</summary>
+        /// <value>The HttpContent.</value>
+        public HttpContent HttpContent { get; set; }
+
+        /// <summary>Gets or sets the content as string.</summary>
         /// <value>The content.</value>
-        public HttpContent Content { get; set; }
+        public string Content { get; set; }
 
         /// <summary>Gets or sets the status code.</summary>
         public HttpStatusCode StatusCode { get; set; }

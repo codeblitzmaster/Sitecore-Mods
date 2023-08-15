@@ -60,7 +60,7 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
             return authorizationParameters;
         }
 
-        protected internal string GetTokenEndpoint(System.Net.Http.HttpClient httpClient, string authority)
+        protected internal string GetTokenEndpoint(HttpClient httpClient, string authority)
         {
             DiscoveryResponse result = httpClient.GetDiscoveryDocumentAsync(authority).Result;
             if (!result.IsError)

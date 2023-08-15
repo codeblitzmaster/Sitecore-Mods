@@ -7,7 +7,6 @@ using SitecoreMods.Feature.FormFieldsMapper.Helpers;
 using SitecoreMods.Feature.FormFieldsMapper.Models;
 using System.Collections.Generic;
 using System.Linq;
-using SitecoreMods.Foundation.Authorization.Services;
 using SitecoreMods.Foundation.Authorization.Interfaces;
 using static System.FormattableString;
 using Sitecore.DependencyInjection;
@@ -52,7 +51,24 @@ namespace SitecoreMods.Feature.FormFieldsMapper.SubmitActions.SubmitToApi
                 postData.Add(field.Name, value);
             }
 
-            _apiIntegrationService.FireAsync(data.ApiEndpointId, postData);
+            var taskResponse  = _apiIntegrationService.FireAsync(data.ApiEndpointId, postData);
+            taskResponse.ContinueWith((task) =>
+            {
+                if (task.IsFaulted)
+                {
+                    _logger.LogError(task.Exception?.ToString(), "Error while submitting form data to API");
+                }
+
+                if (task.IsCompleted)
+                {
+                    var result = task.Result;
+                    if (result != null)
+                    {
+                        _logger.Info($"Form ({formSubmitContext.FormId}) data submitted to API successfully \n Response: \n {result.Content}");
+                        // Do something else with result if required
+                    }
+                }
+            });
 
             return true;
         }

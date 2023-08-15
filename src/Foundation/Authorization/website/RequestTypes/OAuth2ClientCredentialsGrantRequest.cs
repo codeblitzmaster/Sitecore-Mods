@@ -17,14 +17,16 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
         private const string ScopeFieldName = "Scope";
         private const string HeaderPrefixFieldName = "HeaderPrefix";
         private readonly IReadOnlyDictionary<string, string> _authProperties;
-        private readonly Lazy<HttpClient> _tokenClient;
+        //private readonly Lazy<HttpClient> _tokenClient;
+        private readonly IHttpClientFactory _httpClientFactory;
         private readonly object _tokenLocker = new object();
         private string _accessToken;
 
         public OAuth2ClientCredentialsGrantRequest(IReadOnlyDictionary<string, string> authProperties, IHttpClientFactory httpClientFactory, BaseLog log):base(httpClientFactory, log)
         {
+            _httpClientFactory = httpClientFactory;
             _authProperties = authProperties;
-            this._tokenClient = new Lazy<HttpClient>();
+            //this._tokenClient = new Lazy<HttpClient>();
         }
 
         protected override IEnumerable<string> ValidateAuthProperties()
@@ -43,14 +45,15 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
         {
             lock (_tokenLocker)
             {
-                string tokenEndpoint = GetTokenEndpoint(this._tokenClient.Value, _authProperties.GetPropertyValue(AuthorityUrlFieldName));
+                var httpClient = _httpClientFactory.CreateClient();
+                string tokenEndpoint = GetTokenEndpoint(httpClient, _authProperties.GetPropertyValue(AuthorityUrlFieldName));
                 if (tokenEndpoint == null)
                 {
                     _accessToken = null;
                     return _accessToken;
                 }
 
-                HttpClient client = _tokenClient.Value;
+                //HttpClient client = _tokenClient.Value;
 
                 ClientCredentialsTokenRequest request = new ClientCredentialsTokenRequest
                 {
@@ -60,7 +63,7 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
                     Scope = _authProperties.GetPropertyValue(ScopeFieldName)
                 };
                 CancellationToken cancellationToken = new CancellationToken();
-                TokenResponse result = client.RequestClientCredentialsTokenAsync(request, cancellationToken).Result;
+                TokenResponse result = httpClient.RequestClientCredentialsTokenAsync(request, cancellationToken).Result;
                 if (result.IsError)
                 {
                     Log.Error("Authorization: Token request failed with error: " + result.Error, this);

@@ -20,13 +20,15 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
         private const string PasswordFieldName = "Password";
         private readonly object _tokenLocker = new object();
         private readonly IReadOnlyDictionary<string, string> _authProperties;
-        private readonly Lazy<HttpClient> _tokenClient;
+        //private readonly Lazy<HttpClient> _tokenClient;
+        private readonly IHttpClientFactory _httpClientFactory;
         private string _accessToken;
 
         public OAuth2PasswordCredentialsGrantRequest(IReadOnlyDictionary<string, string> authProperties,IHttpClientFactory httpClientFactory, BaseLog log) : base(httpClientFactory, log)
         {
+            _httpClientFactory = httpClientFactory;
             _authProperties = authProperties;
-            _tokenClient = new Lazy<HttpClient>();
+            //_tokenClient = new Lazy<HttpClient>();
         }
 
         protected override IEnumerable<string> ValidateAuthProperties()
@@ -47,14 +49,15 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
         {
             lock (_tokenLocker)
             {
-                string tokenEndpoint = GetTokenEndpoint(_tokenClient.Value, _authProperties.GetPropertyValue(AuthorityUrlFieldName));
+                var httpClient = _httpClientFactory.CreateClient();
+                string tokenEndpoint = GetTokenEndpoint(httpClient, _authProperties.GetPropertyValue(AuthorityUrlFieldName));
                 if (tokenEndpoint == null)
                 {
                     _accessToken = null;
                     return _accessToken;
                 }
 
-                HttpClient client = _tokenClient.Value;
+                //HttpClient client = _tokenClient.Value;
 
                 PasswordTokenRequest request = new PasswordTokenRequest()
                 {
@@ -66,7 +69,7 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
                     Password = _authProperties.GetPropertyValue(PasswordFieldName)
                 };
                 CancellationToken cancellationToken = new CancellationToken();
-                TokenResponse result = client.RequestPasswordTokenAsync(request, cancellationToken).Result;
+                TokenResponse result = httpClient.RequestPasswordTokenAsync(request, cancellationToken).Result;
                 if (result.IsError)
                 {
                     Log.Error("Authorization: Token request failed with error: " + result.Error, this);

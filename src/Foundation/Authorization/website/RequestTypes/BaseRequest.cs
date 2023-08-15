@@ -72,15 +72,18 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
             ResponseData response;
             try
             {
-                HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
+                var httpResponseMessage = HttpClient.SendAsync(request, cancellationToken).Result;//.ConfigureAwait(false);
+                
                 response = new ResponseData()
                 {
                     StatusCode = httpResponseMessage.StatusCode,
                     IsError = !httpResponseMessage.IsSuccessStatusCode,
                     ErrorMessage = httpResponseMessage.ReasonPhrase,
-                    Content = httpResponseMessage.Content
+                    HttpContent = httpResponseMessage.Content
                 };
-                var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                var responseContent = await response.HttpContent.ReadAsStringAsync().ConfigureAwait(false);
+                response.Content = responseContent;
                 if (!response.IsSuccessStatusCode)
                 {
                     _log.Error($"::SitecoreMods:Authorization:: Request not successful {requestUrlString}. Status Code: {response.StatusCode}", this);
