@@ -140,7 +140,8 @@
                     getChildren(destinationFieldsRootItemId, function (items) {
                         var formattedDestinationFields = _.map(items, function (field) {
                             var destinationField = {
-                                "Name": field.$itemName,
+                                //"Name": field.$itemName,
+                                "Name": field.Name,
                                 "DisplayName": field.$displayName,
                                 "Description": field.Description,
                                 "Type": field.Type,
@@ -152,7 +153,8 @@
                             // Logic to update back exiting mapping values on the destination fields before rendering table
                             if (app.HasExistingMappings) {
                                 var existingMappedField = _.find(app.ExistingMappings, function (existingField) {
-                                    return existingField.Name == field.$itemName;
+                                    //return existingField.Name == field.$itemName;
+                                    return existingField.Name == field.Name;
                                 });
                                 if (typeof (existingMappedField) != "undefined") {
                                     destinationField.Value = existingMappedField.Value;
