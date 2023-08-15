@@ -102,9 +102,11 @@
                             this.DestinationFieldsRootItemId = data.destinationFieldsRootItemId;
                             this.DestinationFieldsRootItemName = data.destinationFieldsRootItemName;
                             if (data.hasOwnProperty("mappings")) {
-                                if (data.mappings.length > 0) {
-                                    this.ExistingMappings = data.mappings;
-                                    this.HasExistingMappings = true;
+                                if (typeof (data.mappings) != "undefined") {
+                                    if (data.mappings.length > 0) {
+                                        this.ExistingMappings = data.mappings;
+                                        this.HasExistingMappings = true;
+                                    }
                                 }
                             }
                             this.getDestinationFieldsAndBuildTable(this.DestinationFieldsRootItemId);
@@ -136,21 +138,21 @@
                     options.database = Speak.Context.current().contentDatabase;
                     var app = this;
                     getChildren(destinationFieldsRootItemId, function (items) {
-                        var formattedDestinationFields = _.map(items, function (i) {
+                        var formattedDestinationFields = _.map(items, function (field) {
                             var destinationField = {
-                                "Name": i.$itemName,
-                                "DisplayName": i.$displayName,
-                                "Description": i.Description,
-                                "Type": i.Type,
-                                "IsRequired": i.IsRequired == "1" ? true : false,
-                                "IsPrimary": i.IsPrimary == "1" ? true : false,
-                                "Value": "",
-                                "ID": i.$itemId
+                                "Name": field.$itemName,
+                                "DisplayName": field.$displayName,
+                                "Description": field.Description,
+                                "Type": field.Type,
+                                "IsRequired": field.IsRequired == "1" ? true : false,
+                                "IsPrimary": field.IsPrimary == "1" ? true : false,
+                                "Value": field.DefaultValue,
+                                "ID": field.$itemId
                             };
                             // Logic to update back exiting mapping values on the destination fields before rendering table
                             if (app.HasExistingMappings) {
                                 var existingMappedField = _.find(app.ExistingMappings, function (existingField) {
-                                    return existingField.Name == i.$itemName;
+                                    return existingField.Name == field.$itemName;
                                 });
                                 if (typeof (existingMappedField) != "undefined") {
                                     destinationField.Value = existingMappedField.Value;
