@@ -58,8 +58,7 @@ namespace SitecoreMods.Foundation.Authorization.Services
 
                 if (data != null)
                 {
-                    var parsedData = ExpandFlattenedObject(data);
-                    var content = JsonConvert.SerializeObject(parsedData, new ExpandoObjectConverter());
+                    var content = data.ExpandFlattenedObjectToJsonString();
                     return await requestSender.SendRequestAsync(requestSettings, content, _cancellationTokenSource.Token);
                 }
                 var responseData = await requestSender.SendRequestAsync(requestSettings, null, _cancellationTokenSource.Token);
