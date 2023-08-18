@@ -1,0 +1,45 @@
+﻿---
+ID: "24ef9d52-d522-41d6-8cef-d73365e5139e"
+Parent: "fe64e806-6551-4d27-8417-f0d5ef64395a"
+Template: "aa697a95-4189-4015-8a0b-da76d6a83589"
+Path: "/sitecore/client/Applications/FormsBuilder/Components/Layouts/Actions/SubmitToApi/PageSettings/Tabs/ApiEndpointTab/ApiEndpointTreeView-Parameters"
+DB: core
+SharedFields:
+- ID: "0cc7f24b-2013-46c6-8ae3-5233d094ff7c"
+  Hint: StaticData
+  Value: /sitecore/system/ApiIntegrations/Forms
+- ID: "1af7e858-0f3a-4c35-89ef-f24a385ec3fe"
+  Hint: IsPreLoadItemExpanded
+  Type: Checkbox
+  Value: 1
+- ID: "4552da16-d994-4301-aeb1-adc82cc69623"
+  Hint: BaseTemplates
+  Type: TreelistEx
+  Value: |
+    {AA4D680C-10AF-478F-A877-F5EB4AC7A0A4}
+    {94DC201B-F80E-430F-9C4C-0B0268319476}
+- ID: "4cec56f0-9fe2-4980-8085-62b0a0ab51ec"
+  Hint: Database
+  Value: master
+- ID: "5a8d0155-fb0c-4500-bffd-9ec93207eef7"
+  Hint: Template
+  Value: 
+- ID: "6d0c0ab0-bc40-4bd0-8acb-16612a180f14"
+  Hint: IsVisible
+  Type: Checkbox
+  Value: 1
+- ID: "a678fa80-dcf3-438f-a2cd-08bebaa668f2"
+  Hint: CheckableTemplates
+  Value: 
+- ID: "e0f5c2e5-ea32-4463-aef5-925d4194b4a2"
+  Hint: IsCheckModeEnabled
+  Type: Checkbox
+  Value: 0
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230818T193349Z

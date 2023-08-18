@@ -33,7 +33,7 @@ SharedFields:
           uid="{91858E74-D844-47C7-ADB8-F9EE1F2C86BB}"
           p:after="*[1=2]"
           s:id="{4D096960-FC73-4E0B-8D93-28736AD98E98}"
-          s:par="Database=master&amp;IsPreLoadItemExpanded=1&amp;BaseTemplates=%7bAA4D680C-10AF-478F-A877-F5EB4AC7A0A4%7d&amp;CheckableTemplates=%7bAA4D680C-10AF-478F-A877-F5EB4AC7A0A4%7d&amp;ShowHiddenItems=0&amp;Template=%7bAA4D680C-10AF-478F-A877-F5EB4AC7A0A4%7d&amp;StaticData=%2fsitecore%2fsystem%2fApiIntegrations%2fForms%2f&amp;Id=ApiEndpointTreeView"
+          s:par="ConfigurationItem=%7b24EF9D52-D522-41D6-8CEF-D73365E5139E%7d&amp;Id=ApiEndpointTreeView"
           s:ph="TabBorder.Content" />
       </d>
     </r>
