@@ -11,6 +11,8 @@ using SitecoreMods.Foundation.Authorization.Interfaces;
 using static System.FormattableString;
 using Sitecore.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using SitecoreMods.Feature.FormFieldsMapper.FieldValueConverters;
+using SitecoreMods.Feature.FormFieldsMapper.FieldValueConverters.Abstractions;
 
 
 namespace SitecoreMods.Feature.FormFieldsMapper.SubmitActions.SubmitToApi
@@ -48,7 +50,22 @@ namespace SitecoreMods.Feature.FormFieldsMapper.SubmitActions.SubmitToApi
             foreach (Field field in nonEmptyFields)
             {
                 var value = field.GetAtMentionedParsedValue(formSubmitContext);
-                postData.Add(field.Name, value);
+                if (!string.IsNullOrWhiteSpace(field.ValueConverterType))
+                {
+                    if (InstanceHelper.CreateInstance(field.ValueConverterType, field.ValueConverterTypeParams) is IFieldValueConverter converter)
+                    {
+                        var convertedValue = converter.ConvertFieldValue(value);
+                        postData.Add(field.Name, convertedValue);
+                    }
+                    else
+                    {
+                        postData.Add(field.Name, value);
+                    }
+                }
+                else
+                {
+                    postData.Add(field.Name, value);
+                }
             }
 
             var taskResponse  = _apiIntegrationService.FireAsync(data.ApiEndpointId, postData);

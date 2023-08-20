@@ -148,6 +148,8 @@
                                 "IsRequired": field.IsRequired == "1" ? true : false,
                                 "IsPrimary": field.IsPrimary == "1" ? true : false,
                                 "Value": field.DefaultValue,
+                                "ValueConverterType": field.ValueConverterType,
+                                "ValueConverterTypeParams": field.ValueConverterTypeParams,
                                 "ID": field.$itemId
                             };
                             // Logic to update back exiting mapping values on the destination fields before rendering table

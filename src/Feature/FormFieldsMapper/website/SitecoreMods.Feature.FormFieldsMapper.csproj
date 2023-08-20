@@ -178,7 +178,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FieldValueConverters\Abstractions\FieldValueConverterBase.cs" />
+    <Compile Include="FieldValueConverters\Abstractions\IFieldValueConverter.cs" />
+    <Compile Include="FieldValueConverters\RegularExpressionConverter.cs" />
+    <Compile Include="FieldValueConverters\RegularExpressionParameters.cs" />
     <Compile Include="Helpers\FormHelper.cs" />
+    <Compile Include="Helpers\InstanceHelper.cs" />
     <Compile Include="Models\Field.cs" />
     <Compile Include="Models\FormFieldsMapperRenderingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

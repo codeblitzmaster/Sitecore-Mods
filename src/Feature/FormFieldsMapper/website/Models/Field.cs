@@ -46,5 +46,15 @@ namespace SitecoreMods.Feature.FormFieldsMapper.Models
         /// Source Field Value
         /// </summary>
         public string Value { get; set; }
+
+        /// <summary>
+        /// Field Value Converter Type
+        /// </summary>
+        public string ValueConverterType { get; set; }
+
+        /// <summary>
+        /// Field Value Converter Type Params
+        /// </summary>
+        public string ValueConverterTypeParams { get; set; }
     }
 }
