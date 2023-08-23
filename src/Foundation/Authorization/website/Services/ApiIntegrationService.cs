@@ -53,9 +53,6 @@ namespace SitecoreMods.Foundation.Authorization.Services
                 RequestSettings requestSettings = GetRequestSettings(apiIntegrationItem);
                 BaseRequest requestSender = GetRequest(apiIntegrationItem, requestSettings);
 
-                // TODO: Enhancement: Add logic to set content type header via field on the api integration item
-                requestSettings.SetContentTypeHeader(SerializationType.Json);
-
                 if (data != null)
                 {
                     var content = data.ExpandFlattenedObjectToJsonString();
@@ -143,6 +140,8 @@ namespace SitecoreMods.Foundation.Authorization.Services
             requestSettings.Url = apiIntegrationItem[ApiIntegrationFieldIDs.Url];
             requestSettings.Method = apiIntegrationItem[ApiIntegrationFieldIDs.Method];
             requestSettings.Headers = new Dictionary<string, string>();
+            requestSettings.ContentType = apiIntegrationItem[ApiIntegrationFieldIDs.ContentType];
+            requestSettings.SetContentTypeHeader();
 
             var key = RequestSettingsCache.Keys.SingleOrDefault(k => k.StartsWith($"{(object)apiIntegrationItem.ID}|", StringComparison.InvariantCultureIgnoreCase));
             if (key != null)

@@ -19,7 +19,11 @@ namespace SitecoreMods.Foundation.Authorization.Fields
         /// </summary>
         public static readonly ID Authorization = new ID("{536A2EF6-5BF6-4191-9EF4-08C21E526BB2}");
 
-        //public static readonly ID ContentType = new ID("{F0F0F0F0-F0F0-F0F0-F0F0-F0F0F0F0F0F2}");
+
+        /// <summary>
+        /// ID of /sitecore/templates/Foundation/SitecoreMods/Authorization/Base/_EndpointDetails/Configuration/ContentType
+        /// </summary>
+        public static readonly ID ContentType = new ID("{7B78C320-84EB-44B4-B06D-F966DB959117}");
 
         /// <summary>
         /// ID of /sitecore/templates/Foundation/SitecoreMods/Authorization/Base/_EndpointDetails/Configuration/Headers
