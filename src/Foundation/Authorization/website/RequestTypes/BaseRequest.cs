@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Sitecore.Abstractions;
 using SitecoreMods.Foundation.Authorization.Models;
 using ResponseData = SitecoreMods.Foundation.Authorization.Models.ResponseData;
+using Newtonsoft.Json;
 
 namespace SitecoreMods.Foundation.Authorization.RequestTypes
 {
@@ -58,12 +59,29 @@ namespace SitecoreMods.Foundation.Authorization.RequestTypes
                 request.Headers.Add(key, authorizationParameters.Headers[key]);
             }
 
+            if (requestSettings.Headers.Any())
+            {
+                foreach (var customHeader in requestSettings.Headers)
+                {
+                    request.Headers.Add(customHeader.Key, customHeader.Value);
+                }
+            }
+
             if (httpMethod != HttpMethod.Get)
             {
-                StringContent stringContent = new StringContent(content);
-                if (!string.IsNullOrWhiteSpace(requestSettings.ContentTypeHeader))
-                    stringContent.Headers.ContentType = new MediaTypeHeaderValue(requestSettings.ContentTypeHeader);
-                request.Content = stringContent;
+                if (requestSettings.ContentTypeHeader == "application/x-www-form-urlencoded")
+                {
+                    var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
+                    request.Content = new FormUrlEncodedContent(data);
+                }
+                else
+                {
+                    StringContent stringContent = new StringContent(content);
+                    if (!string.IsNullOrWhiteSpace(requestSettings.ContentTypeHeader))
+                        stringContent.Headers.ContentType = new MediaTypeHeaderValue(requestSettings.ContentTypeHeader);
+                    request.Content = stringContent;
+                }
+                
             }
 
             if (cancellationToken.IsCancellationRequested)

@@ -24,6 +24,7 @@ using Formatting = System.Xml.Formatting;
 using Sitecore.Configuration.KnownSettings;
 using SitecoreMods.Foundation.Authorization.Extensions;
 using AuthorizationSettings = SitecoreMods.Foundation.Authorization.Models.AuthorizationSettings;
+using System.Collections.Specialized;
 
 namespace SitecoreMods.Foundation.Authorization.Services
 {
@@ -139,7 +140,15 @@ namespace SitecoreMods.Foundation.Authorization.Services
 
             requestSettings.Url = apiIntegrationItem[ApiIntegrationFieldIDs.Url];
             requestSettings.Method = apiIntegrationItem[ApiIntegrationFieldIDs.Method];
+            var customHeaders = apiIntegrationItem[ApiIntegrationFieldIDs.Headers];
             requestSettings.Headers = new Dictionary<string, string>();
+            if (!string.IsNullOrWhiteSpace(customHeaders)) {
+                NameValueCollection customHeadersCollection = Sitecore.Web.WebUtil.ParseUrlParameters(customHeaders);
+                foreach (var customHeaderKey in customHeadersCollection.AllKeys)
+                {
+                    requestSettings.Headers.Add(customHeaderKey, customHeadersCollection[customHeaderKey]);
+                }
+            }
             requestSettings.ContentType = apiIntegrationItem[ApiIntegrationFieldIDs.ContentType];
             requestSettings.SetContentTypeHeader();
 
