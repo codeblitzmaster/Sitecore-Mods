@@ -6,6 +6,9 @@ Discover the power of Sitecore-Mods Solution – your gateway to enhancing Sitec
 ## Mods
 1. Sitecore Form Fields-to-API Mapper Module [Read Documentation](Mod-Docs/Mod-1/Mod-1.md)
 
+    Easily integrate Sitecore Form Submission data with Third Party API and do the submission without any code change.
+
+
 
 ## Compatibility
 - Sitecore 10.3.0 and above

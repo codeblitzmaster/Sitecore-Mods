@@ -1,7 +1,7 @@
 # Mod-1: Sitecore Form Fields-to-API Mapper Module
 Sitecore Form Fields-to-API Mapper Module builds the bridge, empowering everyone to seamlessly transform ideas into impactful integrations.
 
-With this module you can easily integrate Sitecore Form Submission data with Third Part API and do the submission without any code change.
+With this module you can easily integrate Sitecore Form Submission data with Third Party API and do the submission without any code change.
 
 **It has 3 main components:**
 1. Integration API Configuration
